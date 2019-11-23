@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Graphics/Environment/Props/crate.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 39, 35 )
+
+[node name="Level 1" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 551.254, 392.876 )
+gravity_cap = 500
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2( 552.482, 478.818 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Floor"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+shape = SubResource( 1 )
+
+[node name="Floor2" type="StaticBody2D" parent="."]
+position = Vector2( 630, 478.818 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Floor2"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2"]
+shape = SubResource( 1 )
+
+[node name="Floor3" type="StaticBody2D" parent="."]
+position = Vector2( 707.795, 478.818 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Floor3"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3"]
+shape = SubResource( 1 )
