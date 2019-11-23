@@ -4,49 +4,46 @@
 [ext_resource path="res://Graphics/Environment/Props/crate.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 39, 35 )
+extents = Vector2( 19.56, 17.5 )
 
 [node name="Level 1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 551.254, 392.876 )
+position = Vector2( 648.18, 318.756 )
 gravity_cap = 500
 
-[node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2( 552.482, 478.818 )
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 513.716, 297.869 )
+current = true
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 667.137, 434.325 )
+scale = Vector2( 3.84207, 3.84207 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="Floor"]
-scale = Vector2( 2, 2 )
+[node name="Sprite" type="Sprite" parent="Node2D"]
+scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
 shape = SubResource( 1 )
 
-[node name="Floor2" type="StaticBody2D" parent="."]
-position = Vector2( 630, 478.818 )
+[node name="Node2D2" type="Node2D" parent="."]
+position = Vector2( 796.643, 299.931 )
+scale = Vector2( 3.84207, 3.84207 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Sprite" type="Sprite" parent="Floor2"]
-scale = Vector2( 2, 2 )
+[node name="Sprite" type="Sprite" parent="Node2D2"]
+scale = Vector2( 1, 1 )
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2"]
-shape = SubResource( 1 )
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D2"]
 
-[node name="Floor3" type="StaticBody2D" parent="."]
-position = Vector2( 707.795, 478.818 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Floor3"]
-scale = Vector2( 2, 2 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/StaticBody2D"]
 shape = SubResource( 1 )

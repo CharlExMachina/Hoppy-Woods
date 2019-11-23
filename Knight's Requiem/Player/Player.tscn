@@ -4,10 +4,10 @@
 [ext_resource path="res://Graphics/Player/adventurer-idle-2-00-1.3.png" type="Texture" id=2]
 [ext_resource path="res://Graphics/Player/adventurer-idle-2-01-1.3.png" type="Texture" id=3]
 [ext_resource path="res://Graphics/Player/adventurer-idle-2-03-1.3.png" type="Texture" id=4]
-[ext_resource path="res://Graphics/Player/adventurer-jump-03-1.3.png" type="Texture" id=5]
-[ext_resource path="res://Graphics/Player/adventurer-jump-00-1.3.png" type="Texture" id=6]
-[ext_resource path="res://Graphics/Player/adventurer-jump-01-1.3.png" type="Texture" id=7]
-[ext_resource path="res://Graphics/Player/adventurer-jump-02-1.3.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/Player/adventurer-jump-00-1.3.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/Player/adventurer-jump-01-1.3.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/Player/adventurer-jump-02-1.3.png" type="Texture" id=7]
+[ext_resource path="res://Graphics/Player/adventurer-jump-03-1.3.png" type="Texture" id=8]
 [ext_resource path="res://Graphics/Player/adventurer-attack2-00-1.3.png" type="Texture" id=9]
 [ext_resource path="res://Graphics/Player/adventurer-attack2-01-1.3.png" type="Texture" id=10]
 [ext_resource path="res://Graphics/Player/adventurer-attack2-03-1.3.png" type="Texture" id=11]
@@ -23,9 +23,7 @@
 [ext_resource path="res://Graphics/Player/adventurer-attack1-03-1.3.png" type="Texture" id=21]
 [ext_resource path="res://Graphics/Player/adventurer-attack1-04-1.3.png" type="Texture" id=22]
 
-[sub_resource type="CapsuleShape2D" id=1]
-radius = 6.55787
-height = 15.9216
+[sub_resource type="RectangleShape2D" id=3]
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -34,15 +32,15 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "fall",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": false,
 "name": "jump",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
@@ -62,16 +60,16 @@ animations = [ {
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 2.59182, 2.59182 )
-collision/safe_margin = 3.533
+collision/safe_margin = 7.531
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.149891, 3.14769 )
-shape = SubResource( 1 )
+position = Vector2( -0.41934, 5.03376 )
+shape = SubResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-animation = "fall"
+animation = "idle"

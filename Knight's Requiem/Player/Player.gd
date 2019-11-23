@@ -15,6 +15,7 @@ var motion = Vector2(0, 0)
 var can_jump = false
 
 func _physics_process(delta):
+	print(is_on_wall())
 	handle_player_controls()
 	pass
 
@@ -60,5 +61,4 @@ func animate():
 		animated_sprite.play("run")
 	elif motion.x == 0 and motion.y == 0 and is_on_floor():
 		animated_sprite.play("idle")
-	
 	pass
