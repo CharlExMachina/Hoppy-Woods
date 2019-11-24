@@ -4,19 +4,19 @@
 [ext_resource path="res://Player/PlayerAnimation.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 5.36033
-height = 14.5069
+radius = 6.05018
+height = 11.2754
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 2.59182, 2.59182 )
-collision/safe_margin = 0.01
+collision/safe_margin = 9.531
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.41934, 5.03376 )
+position = Vector2( 0, 5.09 )
 shape = SubResource( 1 )
 
 [node name="PlayerAnimation" parent="." instance=ExtResource( 2 )]

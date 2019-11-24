@@ -14,6 +14,7 @@ export var gravity_cap = 90
 # node references
 onready var animated_sprite : AnimatedSprite = get_node("PlayerAnimation")
 
+
 var motion = Vector2(0, 0)
 var can_jump = false
 
@@ -25,7 +26,7 @@ func handle_player_controls():
 	apply_gravity()
 	jump()
 	move()
-	motion = move_and_slide(motion, UP)
+	motion = move_and_slide(motion, UP, false, 48, 0.70, true)
 	animate()
 
 func apply_gravity():
@@ -56,5 +57,6 @@ func move():
 	pass
 
 func animate():
-	emit_signal("animate", motion, is_on_floor())
+	var has_input = Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
+	emit_signal("animate", motion, is_on_floor(), has_input)
 	pass

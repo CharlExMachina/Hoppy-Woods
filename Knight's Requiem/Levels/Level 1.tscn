@@ -1,47 +1,20 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Graphics/Environment/Props/crate.png" type="Texture" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 19.56, 17.5 )
+[ext_resource path="res://Tilesets/tileset_1.tres" type="TileSet" id=2]
 
 [node name="Level 1" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 649.809, 310.611 )
-gravity_cap = 500
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 513.716, 297.869 )
 current = true
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2( 667.137, 434.325 )
-scale = Vector2( 3.84207, 3.84207 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 451.318, 228.396 )
+gravity_cap = 500
 
-[node name="Sprite" type="Sprite" parent="Node2D"]
-texture = ExtResource( 2 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Node2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D"]
-shape = SubResource( 1 )
-
-[node name="Node2D2" type="Node2D" parent="."]
-position = Vector2( 796.643, 299.931 )
-scale = Vector2( 3.84207, 3.84207 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Node2D2"]
-texture = ExtResource( 2 )
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Node2D2"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D2/StaticBody2D"]
-shape = SubResource( 1 )
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( 1179691, 10, 0, 1245225, 10, 0, 1310759, 10, 0, 1376293, 10, 0, 1441814, 1, 0, 1441815, 1, 1, 1441816, 1, 1, 1441817, 1, 1, 1441818, 1, 1, 1441819, 1, 1, 1441820, 1, 1, 1441821, 1, 2, 1441822, 1, 3, 1441823, 1, 4, 1441827, 10, 0 )
