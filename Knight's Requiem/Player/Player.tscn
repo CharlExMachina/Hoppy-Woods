@@ -1,64 +1,11 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Graphics/Player/adventurer-idle-2-00-1.3.png" type="Texture" id=2]
-[ext_resource path="res://Graphics/Player/adventurer-idle-2-01-1.3.png" type="Texture" id=3]
-[ext_resource path="res://Graphics/Player/adventurer-idle-2-03-1.3.png" type="Texture" id=4]
-[ext_resource path="res://Graphics/Player/adventurer-jump-00-1.3.png" type="Texture" id=5]
-[ext_resource path="res://Graphics/Player/adventurer-jump-01-1.3.png" type="Texture" id=6]
-[ext_resource path="res://Graphics/Player/adventurer-jump-02-1.3.png" type="Texture" id=7]
-[ext_resource path="res://Graphics/Player/adventurer-jump-03-1.3.png" type="Texture" id=8]
-[ext_resource path="res://Graphics/Player/adventurer-attack2-00-1.3.png" type="Texture" id=9]
-[ext_resource path="res://Graphics/Player/adventurer-attack2-01-1.3.png" type="Texture" id=10]
-[ext_resource path="res://Graphics/Player/adventurer-attack2-03-1.3.png" type="Texture" id=11]
-[ext_resource path="res://Graphics/Player/adventurer-attack2-04-1.3.png" type="Texture" id=12]
-[ext_resource path="res://Graphics/Player/adventurer-attack2-05-1.3.png" type="Texture" id=13]
-[ext_resource path="res://Graphics/Player/adventurer-run-00-1.3.png" type="Texture" id=14]
-[ext_resource path="res://Graphics/Player/adventurer-run-01-1.3.png" type="Texture" id=15]
-[ext_resource path="res://Graphics/Player/adventurer-run-02-1.3.png" type="Texture" id=16]
-[ext_resource path="res://Graphics/Player/adventurer-run-03-1.3.png" type="Texture" id=17]
-[ext_resource path="res://Graphics/Player/adventurer-run-04-1.3.png" type="Texture" id=18]
-[ext_resource path="res://Graphics/Player/adventurer-run-05-1.3.png" type="Texture" id=19]
-[ext_resource path="res://Graphics/Player/adventurer-attack1-02-1.3.png" type="Texture" id=20]
-[ext_resource path="res://Graphics/Player/adventurer-attack1-03-1.3.png" type="Texture" id=21]
-[ext_resource path="res://Graphics/Player/adventurer-attack1-04-1.3.png" type="Texture" id=22]
+[ext_resource path="res://Player/PlayerAnimation.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 5.36033
 height = 14.5069
-
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
-"loop": false,
-"name": "jump",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "fall",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "attack_2",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ) ],
-"loop": true,
-"name": "run",
-"speed": 10.0
-}, {
-"frames": [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ) ],
-"loop": true,
-"name": "attack_1",
-"speed": 10.0
-} ]
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 2.59182, 2.59182 )
@@ -72,6 +19,5 @@ __meta__ = {
 position = Vector2( -0.41934, 5.03376 )
 shape = SubResource( 1 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
-animation = "idle"
+[node name="PlayerAnimation" parent="." instance=ExtResource( 2 )]
+[connection signal="animate" from="." to="PlayerAnimation" method="_on_Player_animate"]

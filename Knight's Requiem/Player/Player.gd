@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+#signals
+signal animate
+
 const GRAVITY = 35
 const UP = Vector2(0, -1)
 const DOWN = Vector2(0, 1)
@@ -9,7 +12,7 @@ export var jump_force = 700
 export var gravity_cap = 90
 
 # node references
-onready var animated_sprite : AnimatedSprite = get_node("AnimatedSprite")
+onready var animated_sprite : AnimatedSprite = get_node("PlayerAnimation")
 
 var motion = Vector2(0, 0)
 var can_jump = false
@@ -38,6 +41,9 @@ func jump():
 	if Input.is_action_just_pressed("jump") and can_jump:
 		motion.y -= jump_force
 		can_jump = false
+	
+	if Input.is_action_just_released("jump") and !can_jump and motion.y < 0:
+		motion.y = 1
 	pass
 
 func move():
@@ -50,13 +56,5 @@ func move():
 	pass
 
 func animate():
-	if motion.y < 0:
-		animated_sprite.play("jump")
-	elif motion.y > 0:
-		animated_sprite.play("fall")
-	elif motion.x != 0 and is_on_floor():
-		animated_sprite.set_flip_h(motion.x < 0)
-		animated_sprite.play("run")
-	elif motion.x == 0 and motion.y == 0 and is_on_floor():
-		animated_sprite.play("idle")
+	emit_signal("animate", motion, is_on_floor())
 	pass
