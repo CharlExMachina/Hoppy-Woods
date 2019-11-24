@@ -15,7 +15,6 @@ var motion = Vector2(0, 0)
 var can_jump = false
 
 func _physics_process(delta):
-	print(is_on_wall())
 	handle_player_controls()
 	pass
 
@@ -23,7 +22,7 @@ func handle_player_controls():
 	apply_gravity()
 	jump()
 	move()
-	move_and_slide(motion, UP)
+	motion = move_and_slide(motion, UP)
 	animate()
 
 func apply_gravity():
@@ -33,7 +32,6 @@ func apply_gravity():
 			motion.y = gravity_cap
 	else:
 		can_jump = true;
-		motion.y = 0
 	pass
 
 func jump():
