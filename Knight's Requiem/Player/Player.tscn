@@ -9,6 +9,7 @@ height = 11.2754
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 2.59182, 2.59182 )
+collision_mask = 2
 collision/safe_margin = 7.766
 script = ExtResource( 1 )
 __meta__ = {
@@ -20,4 +21,9 @@ position = Vector2( 0, 5.09 )
 shape = SubResource( 1 )
 
 [node name="PlayerAnimation" parent="." instance=ExtResource( 2 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+smoothing_enabled = true
+smoothing_speed = 6.0
 [connection signal="animate" from="." to="PlayerAnimation" method="_on_Player_animate"]

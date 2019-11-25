@@ -23,10 +23,10 @@ func _physics_process(delta):
 	pass
 
 func handle_player_controls():
+	motion = move_and_slide(motion, UP, false, 12, 0.70, true)
 	apply_gravity()
 	jump()
 	move()
-	motion = move_and_slide(motion, UP, false, 12, 0.70, true)
 	animate()
 
 func apply_gravity():
