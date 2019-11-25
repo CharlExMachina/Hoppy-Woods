@@ -26,7 +26,7 @@ func handle_player_controls():
 	apply_gravity()
 	jump()
 	move()
-	motion = move_and_slide(motion, UP, false, 48, 0.70, true)
+	motion = move_and_slide(motion, UP, false, 12, 0.70, true)
 	animate()
 
 func apply_gravity():
