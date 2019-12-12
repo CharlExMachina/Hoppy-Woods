@@ -1,62 +1,59 @@
 extends KinematicBody2D
 
-#signals
 signal animate
 
-const GRAVITY = 35
 const UP = Vector2(0, -1)
-const DOWN = Vector2(0, 1)
+const GRAVITY = 35
 
-export var movement_speed = 200
-export var jump_force = 700
-export var gravity_cap = 90
+export var horizontal_speed = 100
+export var jump_force = 250 # will be negative when called
 
-# node references
-onready var animated_sprite : AnimatedSprite = get_node("PlayerAnimation")
+var velocity = Vector2(0, 0)
+var grounded = false;
+var snap_vector = Vector2(0, 32)
 
-
-var motion = Vector2(0, 0)
-var can_jump = false
-
-func _physics_process(delta):
-	handle_player_controls()
+# warning-ignore:unused_argument
+func _physics_process(delta: float) -> void:
+	horizontal_movement()
+	jump()
+	apply_gravity()
+	
+	snap_vector = Vector2(0, 32) if grounded else Vector2(0, 0)
+	velocity = move_and_slide_with_snap(velocity, snap_vector, UP, true, 2)
+	if is_on_floor() and (Input.is_action_just_released("move_left") || Input.is_action_just_released("move_right")):
+		velocity.y = 0
+	
+	check_is_on_floor()
+	animate()
 	pass
 
-func handle_player_controls():
-	motion = move_and_slide(motion, UP, false, 12, 0.70, true)
-	apply_gravity()
-	jump()
-	move()
-	animate()
-
-func apply_gravity():
-	if !is_on_floor():
-		motion.y += GRAVITY
-		if motion.y >= gravity_cap:
-			motion.y = gravity_cap
+func horizontal_movement():
+	if Input.is_action_pressed("move_left") and !Input.is_action_pressed("move_right"):
+		velocity.x = -horizontal_speed
+	elif Input.is_action_pressed("move_right") and !Input.is_action_pressed("move_left"):
+		velocity.x = horizontal_speed
 	else:
-		can_jump = true;
+		velocity.x = 0
 	pass
 
 func jump():
-	if Input.is_action_just_pressed("jump") and can_jump:
-		motion.y -= jump_force
-		can_jump = false
-	
-	if Input.is_action_just_released("jump") and !can_jump and motion.y < 0:
-		motion.y = 1
+	if Input.is_action_just_pressed("jump") and grounded:
+		velocity.y = -jump_force
+		grounded = false
 	pass
 
-func move():
-	if Input.is_action_pressed("move_left") and !Input.is_action_pressed("move_right"):
-		motion.x = -movement_speed
-	elif Input.is_action_pressed("move_right") and !Input.is_action_pressed("move_left"):
-		motion.x = movement_speed
+func apply_gravity():
+	velocity.y += GRAVITY
+	pass
+
+func check_is_on_floor():
+	if is_on_floor():
+		grounded = true;
 	else:
-		motion.x = 0
+		grounded = false;
 	pass
 
 func animate():
 	var has_input = Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
-	emit_signal("animate", motion, is_on_floor(), has_input)
+	emit_signal("animate", velocity, grounded, has_input)
 	pass

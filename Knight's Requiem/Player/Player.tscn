@@ -10,11 +10,13 @@ height = 11.2754
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 2.59182, 2.59182 )
 collision_mask = 2
-collision/safe_margin = 7.766
+collision/safe_margin = 0.2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+horizontal_speed = 150
+jump_force = 800
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 5.09 )
