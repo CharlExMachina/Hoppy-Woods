@@ -5,7 +5,7 @@ signal animate
 const UP = Vector2(0, -1)
 const GRAVITY = 35
 
-export var horizontal_speed = 100
+var horizontal_speed = 250
 export var jump_force = 250 # will be negative when called
 
 var velocity = Vector2(0, 0)
