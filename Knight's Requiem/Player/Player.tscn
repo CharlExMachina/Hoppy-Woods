@@ -7,8 +7,8 @@
 [ext_resource path="res://Graphics/Player/idle/player-idle-2.png" type="Texture" id=5]
 [ext_resource path="res://Graphics/Player/idle/player-idle-3.png" type="Texture" id=6]
 [ext_resource path="res://Graphics/Player/idle/player-idle-4.png" type="Texture" id=7]
-[ext_resource path="res://Graphics/Player/jump/player-jump-1.png" type="Texture" id=8]
-[ext_resource path="res://Graphics/Player/jump/player-jump-2.png" type="Texture" id=9]
+[ext_resource path="res://Graphics/Player/jump/player-jump-2.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/Player/jump/player-jump-1.png" type="Texture" id=9]
 [ext_resource path="res://Graphics/Player/run/player-run-1.png" type="Texture" id=10]
 [ext_resource path="res://Graphics/Player/run/player-run-2.png" type="Texture" id=11]
 [ext_resource path="res://Graphics/Player/run/player-run-3.png" type="Texture" id=12]
@@ -30,12 +30,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "jump",
+"name": "fall",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
-"name": "fall",
+"name": "jump",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
@@ -59,7 +59,7 @@ __meta__ = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-limit_left = 0
+limit_left = 1
 limit_top = -3
 limit_right = 8046
 limit_bottom = 1357
@@ -68,26 +68,27 @@ smoothing_enabled = true
 smoothing_speed = 6.0
 editor_draw_limits = true
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
+[node name="ParallaxBackgrounds" type="ParallaxBackground" parent="Camera2D"]
 scroll_ignore_camera_zoom = true
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+[node name="Background" type="ParallaxLayer" parent="Camera2D/ParallaxBackgrounds"]
 motion_scale = Vector2( 0.2, 1 )
 motion_offset = Vector2( 0, -130 )
 motion_mirroring = Vector2( 1536, 0 )
 
-[node name="TextureRect" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer"]
-margin_right = 1536.0
+[node name="SkyTexture" type="TextureRect" parent="Camera2D/ParallaxBackgrounds/Background"]
+margin_right = 2000.0
 margin_bottom = 960.0
 texture = ExtResource( 2 )
+stretch_mode = 2
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+[node name="MiddleBackground" type="ParallaxLayer" parent="Camera2D/ParallaxBackgrounds"]
 motion_scale = Vector2( 0.4, 1 )
 motion_offset = Vector2( 0, 630 )
 motion_mirroring = Vector2( 352, 0 )
 
-[node name="TextureRect" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer2"]
-margin_right = 1200.0
+[node name="WoodsTexture" type="TextureRect" parent="Camera2D/ParallaxBackgrounds/MiddleBackground"]
+margin_right = 2000.0
 margin_bottom = 736.0
 texture = ExtResource( 3 )
 stretch_mode = 2

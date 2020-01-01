@@ -4,6 +4,7 @@ signal animate
 
 const UP = Vector2(0, -1)
 const GRAVITY = 45
+const WORLD_LIMIT = 1900
 
 var horizontal_speed = 250
 export var jump_force = 250 # will be negative when called
@@ -44,6 +45,14 @@ func jump():
 
 func apply_gravity():
 	velocity.y += GRAVITY
+	
+	if position.y > WORLD_LIMIT:
+		# do game over
+		end_game()
+	pass
+
+func end_game():
+	get_tree().change_scene("res://Levels/GameOver.tscn")
 	pass
 
 func check_is_on_floor():
