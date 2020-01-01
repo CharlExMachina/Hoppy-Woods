@@ -3,7 +3,7 @@ extends KinematicBody2D
 signal animate
 
 const UP = Vector2(0, -1)
-const GRAVITY = 35
+const GRAVITY = 45
 
 var horizontal_speed = 250
 export var jump_force = 250 # will be negative when called
@@ -48,9 +48,9 @@ func apply_gravity():
 
 func check_is_on_floor():
 	if is_on_floor():
-		grounded = true;
+		grounded = true
 	else:
-		grounded = false;
+		grounded = false
 	pass
 
 func animate():

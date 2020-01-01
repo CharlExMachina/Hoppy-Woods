@@ -1,19 +1,21 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Graphics/Player/idle/player-idle-1.png" type="Texture" id=2]
-[ext_resource path="res://Graphics/Player/idle/player-idle-2.png" type="Texture" id=3]
-[ext_resource path="res://Graphics/Player/idle/player-idle-3.png" type="Texture" id=4]
-[ext_resource path="res://Graphics/Player/idle/player-idle-4.png" type="Texture" id=5]
-[ext_resource path="res://Graphics/Player/jump/player-jump-1.png" type="Texture" id=6]
-[ext_resource path="res://Graphics/Player/jump/player-jump-2.png" type="Texture" id=7]
-[ext_resource path="res://Graphics/Player/run/player-run-1.png" type="Texture" id=8]
-[ext_resource path="res://Graphics/Player/run/player-run-2.png" type="Texture" id=9]
-[ext_resource path="res://Graphics/Player/run/player-run-3.png" type="Texture" id=10]
-[ext_resource path="res://Graphics/Player/run/player-run-4.png" type="Texture" id=11]
-[ext_resource path="res://Graphics/Player/run/player-run-5.png" type="Texture" id=12]
-[ext_resource path="res://Graphics/Player/run/player-run-6.png" type="Texture" id=13]
-[ext_resource path="res://Player/PlayerAnimation.gd" type="Script" id=14]
+[ext_resource path="res://Graphics/Environment/layers/background.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Environment/layers/middleground.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Player/idle/player-idle-1.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Player/idle/player-idle-2.png" type="Texture" id=5]
+[ext_resource path="res://Graphics/Player/idle/player-idle-3.png" type="Texture" id=6]
+[ext_resource path="res://Graphics/Player/idle/player-idle-4.png" type="Texture" id=7]
+[ext_resource path="res://Graphics/Player/jump/player-jump-1.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/Player/jump/player-jump-2.png" type="Texture" id=9]
+[ext_resource path="res://Graphics/Player/run/player-run-1.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/Player/run/player-run-2.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/Player/run/player-run-3.png" type="Texture" id=12]
+[ext_resource path="res://Graphics/Player/run/player-run-4.png" type="Texture" id=13]
+[ext_resource path="res://Graphics/Player/run/player-run-5.png" type="Texture" id=14]
+[ext_resource path="res://Graphics/Player/run/player-run-6.png" type="Texture" id=15]
+[ext_resource path="res://Player/PlayerAnimation.gd" type="Script" id=16]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.36857
@@ -21,22 +23,22 @@ height = 10.5677
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
+"frames": [ ExtResource( 9 ) ],
 "loop": true,
 "name": "fall",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
@@ -45,9 +47,8 @@ animations = [ {
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 2.59182, 2.59182 )
 collision_mask = 2
-collision/safe_margin = 0.2
 script = ExtResource( 1 )
-jump_force = 800
+jump_force = 900
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 6.3 )
@@ -58,11 +59,41 @@ __meta__ = {
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+limit_left = 0
+limit_top = -3
+limit_right = 8046
+limit_bottom = 1357
+drag_margin_h_enabled = false
 smoothing_enabled = true
 smoothing_speed = 6.0
+editor_draw_limits = true
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.2, 1 )
+motion_offset = Vector2( 0, -130 )
+motion_mirroring = Vector2( 1536, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer"]
+margin_right = 1536.0
+margin_bottom = 960.0
+texture = ExtResource( 2 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+motion_scale = Vector2( 0.4, 1 )
+motion_offset = Vector2( 0, 630 )
+motion_mirroring = Vector2( 352, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer2"]
+margin_right = 1200.0
+margin_bottom = 736.0
+texture = ExtResource( 3 )
+stretch_mode = 2
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "idle"
-script = ExtResource( 14 )
+script = ExtResource( 16 )
 [connection signal="animate" from="." to="AnimatedSprite" method="_on_Player_animate"]
