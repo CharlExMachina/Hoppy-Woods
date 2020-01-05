@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Hazards/Hazard.gd" type="Script" id=1]
+[ext_resource path="res://Graphics/Environment/props/spikes.png" type="Texture" id=2]
+
+[node name="SpikeTop" type="Area2D"]
+scale = Vector2( 3.89773, 3.89773 )
+collision_layer = 4
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -5.90594, -3.70249, -8.01705, 5.06356, 7.40441, 5.19207, 5.29417, -3.80716 )
+[connection signal="body_entered" from="." to="." method="_on_SpikeTop_body_entered"]

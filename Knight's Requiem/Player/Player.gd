@@ -1,17 +1,22 @@
 extends KinematicBody2D
 
 signal animate
+signal player_hurt
 
 const UP = Vector2(0, -1)
-const GRAVITY = 45
+const GRAVITY = 35
 const WORLD_LIMIT = 1900
 
-var horizontal_speed = 250
+export var lives = 3
+export var horizontal_speed = 250
 export var jump_force = 250 # will be negative when called
 
+onready var audio_player : AudioStreamPlayer = get_node("AudioStreamPlayer")
+
 var velocity = Vector2(0, 0)
-var grounded = false;
+var grounded = false
 var snap_vector = Vector2(0, 32)
+var is_hurt = false
 
 # warning-ignore:unused_argument
 func _physics_process(delta: float) -> void:
@@ -25,7 +30,9 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 	
 	check_is_on_floor()
-	animate()
+	
+	if !is_hurt:
+		animate()
 	pass
 
 func horizontal_movement():
@@ -39,6 +46,8 @@ func horizontal_movement():
 
 func jump():
 	if Input.is_action_just_pressed("jump") and grounded:
+		audio_player.stream = load("res://SFX/SFX_Jump10.ogg")
+		audio_player.play()
 		velocity.y = -jump_force
 		grounded = false
 	pass
@@ -58,6 +67,8 @@ func end_game():
 func check_is_on_floor():
 	if is_on_floor():
 		grounded = true
+		if is_hurt:
+			is_hurt = false
 	else:
 		grounded = false
 	pass
@@ -65,4 +76,19 @@ func check_is_on_floor():
 func animate():
 	var has_input = Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
 	emit_signal("animate", velocity, grounded, has_input)
+	pass
+
+func hurt():
+	is_hurt = true
+	position.y -= 1
+	audio_player.stream = load("res://SFX/SFX_Hit10.ogg")
+	audio_player.play()
+#	yield(get_tree(), "idle_frame")
+	grounded = false
+	velocity.y = -jump_force
+	lives -= 1
+	emit_signal("player_hurt")
+	
+	if lives < 1:
+		end_game()
 	pass

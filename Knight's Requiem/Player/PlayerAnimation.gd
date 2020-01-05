@@ -12,3 +12,7 @@ func _on_Player_animate(velocity : Vector2, is_grounded : bool, has_input : bool
 	else:
 		play("idle")
 	pass
+
+func _on_Player_player_hurt():
+	play("hurt")
+	pass

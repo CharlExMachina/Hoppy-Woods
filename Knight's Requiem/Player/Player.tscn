@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Environment/layers/background.png" type="Texture" id=2]
@@ -7,15 +7,18 @@
 [ext_resource path="res://Graphics/Player/idle/player-idle-2.png" type="Texture" id=5]
 [ext_resource path="res://Graphics/Player/idle/player-idle-3.png" type="Texture" id=6]
 [ext_resource path="res://Graphics/Player/idle/player-idle-4.png" type="Texture" id=7]
-[ext_resource path="res://Graphics/Player/jump/player-jump-2.png" type="Texture" id=8]
-[ext_resource path="res://Graphics/Player/jump/player-jump-1.png" type="Texture" id=9]
-[ext_resource path="res://Graphics/Player/run/player-run-1.png" type="Texture" id=10]
-[ext_resource path="res://Graphics/Player/run/player-run-2.png" type="Texture" id=11]
-[ext_resource path="res://Graphics/Player/run/player-run-3.png" type="Texture" id=12]
-[ext_resource path="res://Graphics/Player/run/player-run-4.png" type="Texture" id=13]
-[ext_resource path="res://Graphics/Player/run/player-run-5.png" type="Texture" id=14]
-[ext_resource path="res://Graphics/Player/run/player-run-6.png" type="Texture" id=15]
-[ext_resource path="res://Player/PlayerAnimation.gd" type="Script" id=16]
+[ext_resource path="res://Graphics/Player/run/player-run-1.png" type="Texture" id=8]
+[ext_resource path="res://Graphics/Player/run/player-run-2.png" type="Texture" id=9]
+[ext_resource path="res://Graphics/Player/run/player-run-3.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/Player/run/player-run-4.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/Player/run/player-run-5.png" type="Texture" id=12]
+[ext_resource path="res://Graphics/Player/run/player-run-6.png" type="Texture" id=13]
+[ext_resource path="res://Graphics/Player/jump/player-jump-1.png" type="Texture" id=14]
+[ext_resource path="res://Graphics/Player/hurt/player-hurt-1.png" type="Texture" id=15]
+[ext_resource path="res://Graphics/Player/hurt/player-hurt-2.png" type="Texture" id=16]
+[ext_resource path="res://Graphics/Player/jump/player-jump-2.png" type="Texture" id=17]
+[ext_resource path="res://Player/PlayerAnimation.gd" type="Script" id=18]
+[ext_resource path="res://SFX/SFX_Jump10.ogg" type="AudioStream" id=19]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.36857
@@ -28,27 +31,32 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
-"name": "fall",
-"speed": 5.0
+"name": "run",
+"speed": 10.0
 }, {
-"frames": [ ExtResource( 9 ) ],
+"frames": [ ExtResource( 14 ) ],
 "loop": true,
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
-"name": "run",
-"speed": 10.0
+"name": "hurt",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 2.59182, 2.59182 )
-collision_mask = 2
+collision_mask = 6
 script = ExtResource( 1 )
-jump_force = 900
+jump_force = 750
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 6.3 )
@@ -58,6 +66,7 @@ __meta__ = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
+editor/display_folded = true
 current = true
 limit_left = 1
 limit_top = -3
@@ -96,5 +105,10 @@ stretch_mode = 2
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "idle"
-script = ExtResource( 16 )
+script = ExtResource( 18 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+volume_db = -16.0
 [connection signal="animate" from="." to="AnimatedSprite" method="_on_Player_animate"]
+[connection signal="player_hurt" from="." to="AnimatedSprite" method="_on_Player_player_hurt"]
