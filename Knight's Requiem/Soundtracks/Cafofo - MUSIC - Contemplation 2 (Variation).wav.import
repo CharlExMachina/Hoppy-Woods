@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Cafofo - MUSIC - Contemplation 2 (Variation).wav-558fb0d1f8a6a797069d2a61cfa5b03f.sample"
+
+[deps]
+
+source_file="res://Soundtracks/Cafofo - MUSIC - Contemplation 2 (Variation).wav"
+dest_files=[ "res://.import/Cafofo - MUSIC - Contemplation 2 (Variation).wav-558fb0d1f8a6a797069d2a61cfa5b03f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

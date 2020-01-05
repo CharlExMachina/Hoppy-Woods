@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/KarmaNES.wav-57851035ee6921a1a8f696c489dd3fef.sample"
+
+[deps]
+
+source_file="res://Soundtracks/KarmaNES.wav"
+dest_files=[ "res://.import/KarmaNES.wav-57851035ee6921a1a8f696c489dd3fef.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
