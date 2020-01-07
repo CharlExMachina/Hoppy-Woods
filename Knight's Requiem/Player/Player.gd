@@ -10,6 +10,7 @@ const WORLD_LIMIT = 1900
 export var lives = 3
 export var horizontal_speed = 250
 export var jump_force = 250 # will be negative when called
+export var boost = 400
 
 onready var audio_player : AudioStreamPlayer = get_node("AudioStreamPlayer")
 
@@ -91,4 +92,11 @@ func hurt():
 	
 	if lives < 1:
 		end_game()
+	pass
+
+func boost():
+	position.y -= 1
+	grounded = false
+	velocity.y = 0
+	velocity.y -= boost
 	pass

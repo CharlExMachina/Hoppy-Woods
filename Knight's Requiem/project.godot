@@ -44,6 +44,7 @@ jump={
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Terrain"
 2d_physics/layer_3="Hazards"
+2d_physics/layer_4="Items"
 
 [rendering]
 
