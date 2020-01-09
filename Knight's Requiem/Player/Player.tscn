@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Environment/layers/background.png" type="Texture" id=2]
@@ -23,6 +23,10 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.36857
 height = 10.5677
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends Camera2D
+"
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -66,7 +70,7 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="."]
 editor/display_folded = true
 current = true
 limit_left = 1
@@ -77,27 +81,28 @@ drag_margin_h_enabled = false
 smoothing_enabled = true
 smoothing_speed = 6.0
 editor_draw_limits = true
+script = SubResource( 3 )
 
-[node name="ParallaxBackgrounds" type="ParallaxBackground" parent="Camera2D"]
+[node name="ParallaxBackgrounds" type="ParallaxBackground" parent="Camera"]
 scroll_ignore_camera_zoom = true
 
-[node name="Background" type="ParallaxLayer" parent="Camera2D/ParallaxBackgrounds"]
+[node name="Background" type="ParallaxLayer" parent="Camera/ParallaxBackgrounds"]
 motion_scale = Vector2( 0.2, 1 )
 motion_offset = Vector2( 0, -130 )
 motion_mirroring = Vector2( 1536, 0 )
 
-[node name="SkyTexture" type="TextureRect" parent="Camera2D/ParallaxBackgrounds/Background"]
+[node name="SkyTexture" type="TextureRect" parent="Camera/ParallaxBackgrounds/Background"]
 margin_right = 2000.0
 margin_bottom = 960.0
 texture = ExtResource( 2 )
 stretch_mode = 2
 
-[node name="MiddleBackground" type="ParallaxLayer" parent="Camera2D/ParallaxBackgrounds"]
+[node name="MiddleBackground" type="ParallaxLayer" parent="Camera/ParallaxBackgrounds"]
 motion_scale = Vector2( 0.4, 1 )
 motion_offset = Vector2( 0, 630 )
 motion_mirroring = Vector2( 352, 0 )
 
-[node name="WoodsTexture" type="TextureRect" parent="Camera2D/ParallaxBackgrounds/MiddleBackground"]
+[node name="WoodsTexture" type="TextureRect" parent="Camera/ParallaxBackgrounds/MiddleBackground"]
 margin_right = 2000.0
 margin_bottom = 736.0
 texture = ExtResource( 3 )
