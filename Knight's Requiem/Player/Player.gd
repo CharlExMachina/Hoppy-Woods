@@ -7,7 +7,6 @@ const UP = Vector2(0, -1)
 const GRAVITY = 35
 const WORLD_LIMIT = 1900
 
-export var lives = 3
 export var horizontal_speed = 250
 export var jump_force = 250 # will be negative when called
 export var boost = 400
@@ -62,11 +61,7 @@ func apply_gravity():
 	
 	if position.y > WORLD_LIMIT:
 		# do game over
-		end_game()
-	pass
-
-func end_game():
-	get_tree().change_scene("res://Levels/GameOver.tscn")
+		get_tree().call_group("Gamestate", "end_game")
 	pass
 
 func check_is_on_floor():
@@ -91,11 +86,11 @@ func hurt():
 #	yield(get_tree(), "idle_frame")
 	grounded = false
 	velocity.y = -jump_force
-	lives -= 1
+#	lives -= 1
 	emit_signal("player_hurt")
-	
-	if lives < 1:
-		end_game()
+#
+#	if lives < 1:
+#		end_game()
 	pass
 
 func boost():

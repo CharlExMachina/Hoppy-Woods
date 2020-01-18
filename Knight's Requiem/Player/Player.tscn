@@ -24,11 +24,11 @@
 radius = 4.36857
 height = 10.5677
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=2]
 script/source = "extends Camera2D
 "
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
@@ -81,7 +81,7 @@ drag_margin_h_enabled = false
 smoothing_enabled = true
 smoothing_speed = 6.0
 editor_draw_limits = true
-script = SubResource( 3 )
+script = SubResource( 2 )
 
 [node name="ParallaxBackgrounds" type="ParallaxBackground" parent="Camera"]
 scroll_ignore_camera_zoom = true
@@ -109,7 +109,7 @@ texture = ExtResource( 3 )
 stretch_mode = 2
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "idle"
 script = ExtResource( 18 )
 
