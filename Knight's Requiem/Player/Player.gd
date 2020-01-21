@@ -15,7 +15,7 @@ onready var audio_player : AudioStreamPlayer = get_node("AudioStreamPlayer")
 
 var velocity = Vector2(0, 0)
 var grounded = false
-var snap_vector = Vector2(0, 32)
+var snap_vector = Vector2(0, 10)
 var is_hurt = false
 
 func _ready():
@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
 	jump()
 	apply_gravity()
 	
-	snap_vector = Vector2(0, 32) if grounded else Vector2(0, 0)
+	snap_vector = Vector2(0, 10) if grounded else Vector2(0, 0)
 	velocity = move_and_slide_with_snap(velocity, snap_vector, UP, true, 2)
 	if is_on_floor() and (Input.is_action_just_released("move_left") || Input.is_action_just_released("move_right")):
 		velocity.y = 0

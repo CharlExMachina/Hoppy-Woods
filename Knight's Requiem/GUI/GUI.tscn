@@ -1,11 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/UI/Normal.png" type="Texture" id=2]
 [ext_resource path="res://Graphics/UI/heart pixel art 32x32.png" type="Texture" id=3]
 [ext_resource path="res://Fonts/gameovercre1.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Graphics/cherry/cherry-1.png" type="Texture" id=5]
 
 [sub_resource type="DynamicFont" id=1]
+size = 32
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
 size = 32
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
@@ -49,3 +56,20 @@ margin_right = 125.0
 margin_bottom = 32.0
 custom_fonts/font = SubResource( 1 )
 text = "x3"
+
+[node name="CherriesIcon" type="TextureRect" parent="Control"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 21.0
+margin_bottom = 64.0
+rect_scale = Vector2( 2.25, 1 )
+texture = ExtResource( 5 )
+stretch_mode = 1
+
+[node name="CherriesLabel" type="Label" parent="Control"]
+margin_left = 60.0
+margin_top = 30.0
+margin_right = 40.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 2 )
+text = "50"
