@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Environment/layers/background.png" type="Texture" id=2]
@@ -55,6 +55,24 @@ animations = [ {
 "name": "fall",
 "speed": 5.0
 } ]
+
+[sub_resource type="Animation" id=4]
+resource_name = "invincible_blink"
+length = 0.5
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimatedSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.09, 0.18, 0.28, 0.39 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true ]
+}
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 2.59182, 2.59182 )
@@ -116,5 +134,8 @@ script = ExtResource( 18 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
 volume_db = -16.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/invincible_blink = SubResource( 4 )
 [connection signal="animate" from="." to="AnimatedSprite" method="_on_Player_animate"]
 [connection signal="player_hurt" from="." to="AnimatedSprite" method="_on_Player_player_hurt"]

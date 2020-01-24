@@ -3,6 +3,7 @@ extends KinematicBody2D
 const GRAVITY = 35
 
 export var horizontal_speed = 250 # if negative, it will start moving right
+export var i_time = 3 # seconds before it can damage the player again
 
 var UP = Vector2(0, -10)
 var velocity = Vector2(0, 0)
@@ -25,7 +26,19 @@ func horizontal_movement():
 		else:
 			position.x += 1
 		
-		horizontal_speed *= -1
+		flip_hspeed()
 	
 	$Sprite.set_flip_h(horizontal_speed > 0)
+	pass
+
+func hurt_player():
+	get_tree().call_group("Gamestate", "hurt")
+	pass
+
+func _on_Area2D_body_entered(body):
+	get_tree().call_group("Gamestate", "hurt")
+	pass
+
+func flip_hspeed():
+	horizontal_speed *= -1
 	pass

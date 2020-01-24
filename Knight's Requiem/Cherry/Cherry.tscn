@@ -61,6 +61,7 @@ script = ExtResource( 1 )
 position = Vector2( 0, -0.263519 )
 frames = SubResource( 1 )
 animation = "spin"
+frame = 3
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]

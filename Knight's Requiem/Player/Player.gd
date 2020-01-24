@@ -10,6 +10,7 @@ const WORLD_LIMIT = 1900
 export var horizontal_speed = 250
 export var jump_force = 250 # will be negative when called
 export var boost = 400
+export var invincible_timer = 2
 
 onready var audio_player : AudioStreamPlayer = get_node("AudioStreamPlayer")
 
@@ -78,19 +79,47 @@ func animate():
 	emit_signal("animate", velocity, grounded, has_input)
 	pass
 
+func set_player_invincible():
+	#change from player layer to invincible layer
+	self.set_collision_layer_bit(4, true)
+	self.set_collision_layer_bit(0, false)
+	
+	#collision with hazards
+	self.set_collision_mask_bit(2, false)
+	
+	set_player_not_invincible(invincible_timer)
+	pass
+
+func set_player_not_invincible(seconds):
+	yield(get_tree().create_timer(seconds), "timeout")
+	stop_invincible_animation()
+	
+	#change from invincible layer to player layer
+	self.set_collision_layer_bit(4, false)
+	self.set_collision_layer_bit(0, true)
+	
+	#collision with hazards enabled again
+	self.set_collision_mask_bit(2, true)
+	pass
+
+func play_invincible_animation():
+	$AnimationPlayer.play("invincible_blink")
+	pass
+
+func stop_invincible_animation():
+	$AnimationPlayer.stop()
+	pass
+
 func hurt():
 	is_hurt = true
 	position.y -= 1
 	audio_player.stream = load("res://SFX/SFX_Hit10.ogg")
 	audio_player.play()
-#	yield(get_tree(), "idle_frame")
 	grounded = false
 	velocity.y = -jump_force
-#	lives -= 1
 	emit_signal("player_hurt")
-#
-#	if lives < 1:
-#		end_game()
+	play_invincible_animation()
+	set_player_invincible()
 	pass
 
 func boost():

@@ -10,6 +10,7 @@ func _ready():
 	pass
 
 func hurt():
+	
 	lives -= 1
 	$Player.hurt()
 	if (lives < 1):
