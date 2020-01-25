@@ -5,6 +5,9 @@ const GRAVITY = 35
 export var horizontal_speed = 250 # if negative, it will start moving right
 export var i_time = 3 # seconds before it can damage the player again
 
+#preload the explosion effect
+var explosion_fx = preload("res://EnemyExplosion/EnemyExplosion.tscn")
+
 var UP = Vector2(0, -10)
 var velocity = Vector2(0, 0)
 
@@ -44,5 +47,8 @@ func flip_hspeed():
 	pass
 
 func _on_WeakspotArea_was_stomped():
+	var explosion_instance = explosion_fx.instance()
+	explosion_instance.position = position
+	get_tree().root.add_child(explosion_instance)
 	queue_free()
 	pass

@@ -17,6 +17,9 @@ export var invincible_timer = 2
 onready var audio_player : AudioStreamPlayer = get_node("AudioStreamPlayer")
 onready var stomp_raycast : RayCast2D = get_node("RayCast2D")
 
+var stomp_sound = preload("res://SFX/SFX_Hurt08.ogg")
+var jump_sound = preload("res://SFX/SFX_Jump10.ogg")
+
 var velocity = Vector2(0, 0)
 var grounded = false
 var snap_vector = Vector2(0, 10)
@@ -55,7 +58,7 @@ func horizontal_movement():
 
 func jump():
 	if Input.is_action_just_pressed("jump") and grounded:
-		audio_player.stream = load("res://SFX/SFX_Jump10.ogg")
+		audio_player.stream = jump_sound
 		audio_player.play()
 		velocity.y = -jump_force
 		grounded = false
@@ -143,6 +146,12 @@ func bounce_from_enemy():
 	grounded = false
 	velocity.y = 0
 	velocity.y -= enemy_bounce_force
+	play_stomp_sound()
+	pass
+
+func play_stomp_sound():
+	audio_player.stream = stomp_sound
+	audio_player.play()
 	pass
 
 func set_camera_limits():

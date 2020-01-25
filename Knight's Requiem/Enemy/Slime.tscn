@@ -27,7 +27,7 @@ tracks/0/keys = {
 extents = Vector2( 26.235, 13.9975 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 22.9642, 2.64265 )
+extents = Vector2( 26.2914, 2.64265 )
 
 [node name="Slime" type="KinematicBody2D"]
 collision_layer = 4
@@ -50,7 +50,6 @@ playback_speed = 6.64
 anims/Idle = SubResource( 2 )
 
 [node name="DamageArea" type="Area2D" parent="."]
-editor/display_folded = true
 collision_layer = 4
 
 [node name="DamageBox" type="CollisionShape2D" parent="DamageArea"]
@@ -62,7 +61,7 @@ collision_layer = 32
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeakspotArea"]
-position = Vector2( 0.184021, -16.2217 )
+position = Vector2( 0.00920105, -15.8721 )
 shape = SubResource( 4 )
 [connection signal="body_entered" from="DamageArea" to="." method="_on_Area2D_body_entered"]
 [connection signal="was_stomped" from="WeakspotArea" to="." method="_on_WeakspotArea_was_stomped"]
