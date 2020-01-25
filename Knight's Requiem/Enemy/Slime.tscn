@@ -63,5 +63,21 @@ script = ExtResource( 3 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WeakspotArea"]
 position = Vector2( 0.00920105, -15.8721 )
 shape = SubResource( 4 )
+
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="Left" type="RayCast2D" parent="Raycasts"]
+position = Vector2( -24.8252, 10.926 )
+enabled = true
+cast_to = Vector2( 0, 4.95 )
+collision_mask = 2
+collide_with_areas = true
+
+[node name="Right" type="RayCast2D" parent="Raycasts"]
+position = Vector2( 24.68, 10.926 )
+enabled = true
+cast_to = Vector2( 0, 4.95 )
+collision_mask = 2
+collide_with_areas = true
 [connection signal="body_entered" from="DamageArea" to="." method="_on_Area2D_body_entered"]
 [connection signal="was_stomped" from="WeakspotArea" to="." method="_on_WeakspotArea_was_stomped"]

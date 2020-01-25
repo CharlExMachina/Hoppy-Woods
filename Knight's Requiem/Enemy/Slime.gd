@@ -5,16 +5,31 @@ const GRAVITY = 35
 export var horizontal_speed = 250 # if negative, it will start moving right
 export var i_time = 3 # seconds before it can damage the player again
 
+onready var left_ground_checker: RayCast2D = $Raycasts/Left
+onready var right_ground_checker: RayCast2D = $Raycasts/Right
+
 #preload the explosion effect
 var explosion_fx = preload("res://EnemyExplosion/EnemyExplosion.tscn")
 
 var UP = Vector2(0, -10)
 var velocity = Vector2(0, 0)
+var check_floor = true
 
 func _physics_process(delta):
 	horizontal_movement()
 	apply_gravity()
+	check_for_boundaries()
 	velocity = move_and_slide(velocity, UP)
+	pass
+
+func check_for_boundaries():
+	if not left_ground_checker.is_colliding() or not right_ground_checker.is_colliding():
+		if check_floor:
+			flip_hspeed()
+			check_floor = false
+	
+	if left_ground_checker.is_colliding() and right_ground_checker.is_colliding() and not check_floor:
+		check_floor = true
 	pass
 
 func apply_gravity():
