@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Environment/layers/background.png" type="Texture" id=2]
@@ -9,16 +9,17 @@
 [ext_resource path="res://Graphics/Player/idle/player-idle-4.png" type="Texture" id=7]
 [ext_resource path="res://Graphics/Player/hurt/player-hurt-1.png" type="Texture" id=8]
 [ext_resource path="res://Graphics/Player/hurt/player-hurt-2.png" type="Texture" id=9]
-[ext_resource path="res://Graphics/Player/jump/player-jump-1.png" type="Texture" id=10]
-[ext_resource path="res://Graphics/Player/run/player-run-1.png" type="Texture" id=11]
-[ext_resource path="res://Graphics/Player/run/player-run-2.png" type="Texture" id=12]
-[ext_resource path="res://Graphics/Player/run/player-run-3.png" type="Texture" id=13]
-[ext_resource path="res://Graphics/Player/run/player-run-4.png" type="Texture" id=14]
-[ext_resource path="res://Graphics/Player/run/player-run-5.png" type="Texture" id=15]
-[ext_resource path="res://Graphics/Player/run/player-run-6.png" type="Texture" id=16]
-[ext_resource path="res://Graphics/Player/jump/player-jump-2.png" type="Texture" id=17]
+[ext_resource path="res://Graphics/Player/run/player-run-1.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/Player/run/player-run-2.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/Player/run/player-run-3.png" type="Texture" id=12]
+[ext_resource path="res://Graphics/Player/run/player-run-4.png" type="Texture" id=13]
+[ext_resource path="res://Graphics/Player/run/player-run-5.png" type="Texture" id=14]
+[ext_resource path="res://Graphics/Player/run/player-run-6.png" type="Texture" id=15]
+[ext_resource path="res://Graphics/Player/jump/player-jump-2.png" type="Texture" id=16]
+[ext_resource path="res://Graphics/Player/jump/player-jump-1.png" type="Texture" id=17]
 [ext_resource path="res://Player/PlayerAnimation.gd" type="Script" id=18]
 [ext_resource path="res://SFX/SFX_Jump10.ogg" type="AudioStream" id=19]
+[ext_resource path="res://Player/RayCast2D.gd" type="Script" id=20]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 4.36857
@@ -40,19 +41,19 @@ animations = [ {
 "name": "hurt",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "run",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 17 ) ],
+"frames": [ ExtResource( 16 ) ],
 "loop": true,
 "name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "jump",
 "speed": 5.0
 } ]
 
@@ -78,6 +79,7 @@ tracks/0/keys = {
 scale = Vector2( 2.59182, 2.59182 )
 collision_mask = 14
 script = ExtResource( 1 )
+enemy_bounce_force = 600
 jump_force = 750
 boost = 1400
 
@@ -137,5 +139,15 @@ volume_db = -16.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/invincible_blink = SubResource( 4 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 0, 13.91 )
+enabled = true
+cast_to = Vector2( 0, 2.43 )
+collision_mask = 32
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource( 20 )
 [connection signal="animate" from="." to="AnimatedSprite" method="_on_Player_animate"]
 [connection signal="player_hurt" from="." to="AnimatedSprite" method="_on_Player_player_hurt"]
+[connection signal="stomp_enemy" from="." to="RayCast2D" method="_on_Player_stomp_enemy"]

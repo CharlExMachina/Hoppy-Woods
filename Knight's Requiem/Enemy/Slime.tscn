@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Enemy/Slime.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/Enemies/Slime/Idle-Run (44x30).png" type="Texture" id=2]
+[ext_resource path="res://Enemy/WeakspotArea.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 21.3938, 14.8776 )
@@ -25,6 +26,9 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 26.235, 13.9975 )
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 22.9642, 2.64265 )
+
 [node name="Slime" type="KinematicBody2D"]
 collision_layer = 4
 collision_mask = 3
@@ -45,10 +49,20 @@ autoplay = "Idle"
 playback_speed = 6.64
 anims/Idle = SubResource( 2 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="DamageArea" type="Area2D" parent="."]
+editor/display_folded = true
 collision_layer = 4
 
-[node name="DamageBox" type="CollisionShape2D" parent="Area2D"]
+[node name="DamageBox" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2( 1.52588e-005, 0.440125 )
 shape = SubResource( 3 )
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+[node name="WeakspotArea" type="Area2D" parent="."]
+collision_layer = 32
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WeakspotArea"]
+position = Vector2( 0.184021, -16.2217 )
+shape = SubResource( 4 )
+[connection signal="body_entered" from="DamageArea" to="." method="_on_Area2D_body_entered"]
+[connection signal="was_stomped" from="WeakspotArea" to="." method="_on_WeakspotArea_was_stomped"]

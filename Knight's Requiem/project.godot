@@ -46,6 +46,7 @@ jump={
 2d_physics/layer_3="Hazards"
 2d_physics/layer_4="Items"
 2d_physics/layer_5="Invincible"
+2d_physics/layer_6="EnemyWeakspots"
 
 [rendering]
 

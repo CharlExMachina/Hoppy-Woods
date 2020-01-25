@@ -2,17 +2,20 @@ extends KinematicBody2D
 
 signal animate
 signal player_hurt
+signal stomp_enemy
 
 const UP = Vector2(0, -1)
 const GRAVITY = 35
 const WORLD_LIMIT = 1900
 
 export var horizontal_speed = 250
+export var enemy_bounce_force = 200
 export var jump_force = 250 # will be negative when called
 export var boost = 400
 export var invincible_timer = 2
 
 onready var audio_player : AudioStreamPlayer = get_node("AudioStreamPlayer")
+onready var stomp_raycast : RayCast2D = get_node("RayCast2D")
 
 var velocity = Vector2(0, 0)
 var grounded = false
@@ -28,6 +31,7 @@ func _physics_process(delta: float) -> void:
 	horizontal_movement()
 	jump()
 	apply_gravity()
+	check_if_stomped_enemy()
 	
 	snap_vector = Vector2(0, 10) if grounded else Vector2(0, 0)
 	velocity = move_and_slide_with_snap(velocity, snap_vector, UP, true, 2)
@@ -127,6 +131,18 @@ func boost():
 	grounded = false
 	velocity.y = 0
 	velocity.y -= boost
+	pass
+
+func check_if_stomped_enemy():
+	if not grounded and stomp_raycast.is_colliding():
+		bounce_from_enemy()
+		emit_signal("stomp_enemy")
+
+func bounce_from_enemy():
+	position.y -= 1
+	grounded = false
+	velocity.y = 0
+	velocity.y -= enemy_bounce_force
 	pass
 
 func set_camera_limits():

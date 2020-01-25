@@ -42,3 +42,7 @@ func _on_Area2D_body_entered(body):
 func flip_hspeed():
 	horizontal_speed *= -1
 	pass
+
+func _on_WeakspotArea_was_stomped():
+	queue_free()
+	pass
