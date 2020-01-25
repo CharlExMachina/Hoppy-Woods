@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://EagleEnemy/Eagle.gd" type="Script" id=1]
+[ext_resource path="res://Graphics/Enemies/eagle/eagle-attack-1.png" type="Texture" id=2]
+[ext_resource path="res://Graphics/Enemies/eagle/eagle-attack-2.png" type="Texture" id=3]
+[ext_resource path="res://Graphics/Enemies/eagle/eagle-attack-3.png" type="Texture" id=4]
+[ext_resource path="res://Graphics/Enemies/eagle/eagle-attack-4.png" type="Texture" id=5]
+[ext_resource path="res://Enemy/WeakspotArea.gd" type="Script" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "fly",
+"speed": 8.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 18.8989 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 10.9579, 0.917688 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Fly"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -100 ) ]
+}
+
+[node name="Eagle" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="EagleSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -66.048 )
+scale = Vector2( 2.3307, 2.3307 )
+frames = SubResource( 1 )
+animation = "fly"
+frame = 2
+playing = true
+
+[node name="DamageArea" type="Area2D" parent="EagleSprite"]
+collision_layer = 4
+
+[node name="DamageCollision" type="CollisionShape2D" parent="EagleSprite/DamageArea"]
+position = Vector2( -2.83257, 6.60932 )
+scale = Vector2( 1.10209, 0.598119 )
+shape = SubResource( 2 )
+
+[node name="WeakspotArea" type="Area2D" parent="EagleSprite"]
+collision_layer = 32
+script = ExtResource( 6 )
+
+[node name="WeakspotCollision" type="CollisionShape2D" parent="EagleSprite/WeakspotArea"]
+position = Vector2( -2.94388, -5.52633 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EagleSprite"]
+autoplay = "Fly"
+anims/Fly = SubResource( 4 )
+[connection signal="body_entered" from="EagleSprite/DamageArea" to="." method="_on_DamageArea_body_entered"]
+[connection signal="was_stomped" from="EagleSprite/WeakspotArea" to="." method="_on_WeakspotArea_was_stomped"]

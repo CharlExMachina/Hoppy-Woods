@@ -79,7 +79,7 @@ tracks/0/keys = {
 scale = Vector2( 2.59182, 2.59182 )
 collision_mask = 14
 script = ExtResource( 1 )
-enemy_bounce_force = 600
+enemy_bounce_force = 630
 jump_force = 750
 boost = 1400
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Levels/GameState.gd" type="Script" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
@@ -7,15 +7,16 @@
 [ext_resource path="res://Cherry/Cherry.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Hazards/SpikeTop.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Enemy/Slime.tscn" type="PackedScene" id=7]
-[ext_resource path="res://StageObjects/OneWayVolume.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Graphics/Environment/props/bush.png" type="Texture" id=9]
-[ext_resource path="res://Graphics/Environment/props/shrooms.png" type="Texture" id=10]
-[ext_resource path="res://Graphics/Environment/props/rock.png" type="Texture" id=11]
-[ext_resource path="res://Graphics/Environment/props/tree.png" type="Texture" id=12]
-[ext_resource path="res://Graphics/Environment/props/house.png" type="Texture" id=13]
-[ext_resource path="res://Graphics/Environment/props/big-crate.png" type="Texture" id=14]
-[ext_resource path="res://Soundtracks/Juhani Junkala [Chiptune Adventures] 1. Stage 1.ogg" type="AudioStream" id=15]
-[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=16]
+[ext_resource path="res://EagleEnemy/Eagle.tscn" type="PackedScene" id=8]
+[ext_resource path="res://StageObjects/OneWayVolume.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Graphics/Environment/props/bush.png" type="Texture" id=10]
+[ext_resource path="res://Graphics/Environment/props/shrooms.png" type="Texture" id=11]
+[ext_resource path="res://Graphics/Environment/props/rock.png" type="Texture" id=12]
+[ext_resource path="res://Graphics/Environment/props/tree.png" type="Texture" id=13]
+[ext_resource path="res://Graphics/Environment/props/house.png" type="Texture" id=14]
+[ext_resource path="res://Graphics/Environment/props/big-crate.png" type="Texture" id=15]
+[ext_resource path="res://Soundtracks/Juhani Junkala [Chiptune Adventures] 1. Stage 1.ogg" type="AudioStream" id=16]
+[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=17]
 
 [node name="Level1" type="Node2D"]
 position = Vector2( -191.12, 0 )
@@ -110,28 +111,44 @@ position = Vector2( 5795.65, 404.103 )
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Slime" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 1040, 530 )
+position = Vector2( 738.161, 525.834 )
+
+[node name="Slime2" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 1783.88, 626.028 )
+z_index = 6
+
+[node name="Slime3" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 5194.21, 434.074 )
+z_index = 6
+
+[node name="Slime4" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 6188.24, 404.203 )
+z_index = 6
+
+[node name="Eagle" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 823.815, 502.826 )
+frame = 3
 
 [node name="OneWayPlatforms" type="Node" parent="."]
 editor/display_folded = true
 
-[node name="OneWayVolume" parent="OneWayPlatforms" instance=ExtResource( 8 )]
+[node name="OneWayVolume" parent="OneWayPlatforms" instance=ExtResource( 9 )]
 position = Vector2( 1536.59, 711.198 )
 
-[node name="OneWayVolume2" parent="OneWayPlatforms" instance=ExtResource( 8 )]
+[node name="OneWayVolume2" parent="OneWayPlatforms" instance=ExtResource( 9 )]
 position = Vector2( 1774.85, 518.98 )
 scale = Vector2( 3.24, 1.41307 )
 
-[node name="OneWayVolume3" parent="OneWayPlatforms" instance=ExtResource( 8 )]
+[node name="OneWayVolume3" parent="OneWayPlatforms" instance=ExtResource( 9 )]
 position = Vector2( 1468, 807.358 )
 
-[node name="OneWayVolume4" parent="OneWayPlatforms" instance=ExtResource( 8 )]
+[node name="OneWayVolume4" parent="OneWayPlatforms" instance=ExtResource( 9 )]
 position = Vector2( 1536.59, 903.572 )
 
-[node name="OneWayVolume5" parent="OneWayPlatforms" instance=ExtResource( 8 )]
+[node name="OneWayVolume5" parent="OneWayPlatforms" instance=ExtResource( 9 )]
 position = Vector2( 1468, 967.39 )
 
-[node name="OneWayVolume6" parent="OneWayPlatforms" instance=ExtResource( 8 )]
+[node name="OneWayVolume6" parent="OneWayPlatforms" instance=ExtResource( 9 )]
 position = Vector2( 1536.59, 1063.56 )
 
 [node name="Props" type="Node2D" parent="."]
@@ -144,65 +161,65 @@ __meta__ = {
 [node name="bush" type="Sprite" parent="Props"]
 position = Vector2( 785.252, 527.077 )
 scale = Vector2( 1.27011, 1.27011 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="bush2" type="Sprite" parent="Props"]
 position = Vector2( 1370.18, 528.468 )
 scale = Vector2( 1.17458, 1.17458 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="shrooms" type="Sprite" parent="Props"]
 position = Vector2( 1794.35, 630.319 )
 scale = Vector2( 1.30959, 1.30959 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="shrooms2" type="Sprite" parent="Props"]
 position = Vector2( 587.739, 534.612 )
 scale = Vector2( 1.45017, 1.45017 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="rock" type="Sprite" parent="Props"]
 position = Vector2( 1450.94, 536.965 )
 scale = Vector2( 1.48419, 1.48419 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
 [node name="tree" type="Sprite" parent="Props"]
 position = Vector2( 1200.05, 307.579 )
 scale = Vector2( 5.15751, 5.15751 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 
 [node name="tree2" type="Sprite" parent="Props"]
 position = Vector2( 3891.12, 170 )
 scale = Vector2( 6.07111, 6.07111 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 offset = Vector2( 15.9921, 17.3198 )
 
 [node name="tree3" type="Sprite" parent="Props"]
 position = Vector2( 8046.5, 32.5629 )
 scale = Vector2( 6.07111, 6.07111 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 offset = Vector2( 15.9921, 17.3198 )
 
 [node name="house" type="Sprite" parent="Props"]
 position = Vector2( 4164.94, 378.003 )
 scale = Vector2( 3.58945, 3.09436 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 
 [node name="big-crate" type="Sprite" parent="Props"]
 position = Vector2( 4331.06, 528.743 )
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 
 [node name="big-crate2" type="Sprite" parent="Props"]
 position = Vector2( 4362.93, 528.743 )
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 
 [node name="big-crate3" type="Sprite" parent="Props"]
 position = Vector2( 4347, 497.35 )
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 15 )
+stream = ExtResource( 16 )
 volume_db = -7.068
 autoplay = true
 
-[node name="GUI" parent="." instance=ExtResource( 16 )]
+[node name="GUI" parent="." instance=ExtResource( 17 )]
