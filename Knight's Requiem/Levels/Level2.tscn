@@ -1,25 +1,28 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Tilesets/forest_tiles.tres" type="TileSet" id=3]
-[ext_resource path="res://Level Props/Forest Props/ForestProps.tres" type="TileSet" id=4]
-[ext_resource path="res://Level Props/WindGust.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Soundtracks/KarmaNES.wav" type="AudioStream" id=6]
-[ext_resource path="res://StageObjects/OneWayVolume.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Enemy/Slime.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Levels/GameState.gd" type="Script" id=1]
+[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Tilesets/forest_tiles.tres" type="TileSet" id=4]
+[ext_resource path="res://Level Props/Forest Props/ForestProps.tres" type="TileSet" id=5]
+[ext_resource path="res://Level Props/WindGust.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Soundtracks/KarmaNES.wav" type="AudioStream" id=7]
+[ext_resource path="res://StageObjects/OneWayVolume.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemy/Slime.tscn" type="PackedScene" id=9]
+[ext_resource path="res://EagleEnemy/Eagle.tscn" type="PackedScene" id=10]
 
 [node name="Level2" type="Node2D"]
+script = ExtResource( 1 )
 
-[node name="GUI" parent="." instance=ExtResource( 1 )]
+[node name="GUI" parent="." instance=ExtResource( 2 )]
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 280.688, 439.484 )
 
 [node name="BackgroundTiles" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
 z_index = -10
-tile_set = ExtResource( 3 )
+tile_set = ExtResource( 4 )
 cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 196753, 25, 0, 196758, 24, 0, 262221, 41, 0, 262222, 41, 0, 262300, 36, 0, 262301, 36, 0, 262302, 36, 0, 262303, 36, 0, 262304, 36, 0, 327755, 41, 0, 327756, 41, 0, 327836, 36, 0, 327837, 36, 0, 327838, 36, 0, 327839, 36, 0, 327840, 36, 0, 327841, 36, 0, 327842, 34, 0, 393291, 41, 0, 393295, 41, 0, 458824, 39, 0, 458825, 36, 0, 458827, 41, 0, 458828, 41, 0, 458829, 41, 0, 458919, 24, 0, 458932, 24, 0, 524360, 39, 0, 524361, 36, 0, 524362, 36, 0, 524363, 36, 0, 524364, 36, 0, 524365, 36, 0, 524366, 36, 0, 589897, 36, 0, 589898, 36, 0, 589899, 36, 0, 589900, 36, 0, 589901, 36, 0, 589902, 36, 0, 720935, 49, 0, 720936, 49, 0, 720937, 49, 0, 720938, 49, 0, 720939, 49, 0, 720940, 49, 0, 720941, 49, 0, 720942, 49, 0, 720943, 49, 0, 720944, 49, 0, 720945, 49, 0, 720946, 49, 0, 720947, 49, 0, 720948, 49, 0, 720949, 49, 0, 720950, 49, 0, 720951, 49, 0, 720952, 49, 0, 720953, 49, 0, 720954, 49, 0, 720955, 49, 0, 720956, 49, 0, 720957, 49, 0, 720958, 49, 0, 720959, 49, 0, 720960, 49, 0, 720961, 49, 0, 720962, 49, 0, 720963, 49, 0, 720964, 49, 0, 720965, 49, 0, 720966, 49, 0, 720967, 49, 0, 720968, 49, 0, 720969, 49, 0, 720970, 49, 0, 720971, 49, 0, 720972, 49, 0, 720973, 49, 0, 720974, 49, 0, 720975, 49, 0, 720976, 49, 0, 720977, 49, 0, 720978, 49, 0, 720979, 49, 0, 720980, 49, 0, 720981, 49, 0, 720982, 49, 0, 720983, 49, 0, 720984, 49, 0, 720985, 49, 0, 720986, 49, 0, 720987, 49, 0, 720988, 49, 0, 720989, 49, 0, 720990, 49, 0, 1114151, 49, 0, 1310792, 49, 0, 1310793, 49, 0, 1507400, 49, 0, 1507401, 49, 0 )
@@ -27,7 +30,7 @@ tile_data = PoolIntArray( 196753, 25, 0, 196758, 24, 0, 262221, 41, 0, 262222, 4
 [node name="CollisionTiles" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
 z_index = -10
-tile_set = ExtResource( 3 )
+tile_set = ExtResource( 4 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 2
 format = 1
@@ -36,7 +39,7 @@ tile_data = PoolIntArray( -5701364, 16, 0, -5701363, 16, 0, -5701362, 16, 0, -57
 [node name="PropsTilesBack" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
 z_index = -15
-tile_set = ExtResource( 4 )
+tile_set = ExtResource( 5 )
 cell_size = Vector2( 8, 8 )
 format = 1
 tile_data = PoolIntArray( -7077346, 0, 0, -1507278, 5, 0, -1441550, 1, 0, -1114001, 536870918, 0, -131031, 1, 0, -131027, 3, 0, -131008, 3, 0, -65488, 4, 0, 131176, 3, 0, 131189, 3, 0, 196704, 2, 0, 196720, 536870916, 0, 458756, 6, 0, 458774, 6, 0, 655499, 3, 0, 1048736, 3, 0, 1703958, 3, 0, 1769483, 2, 0 )
@@ -44,7 +47,7 @@ tile_data = PoolIntArray( -7077346, 0, 0, -1507278, 5, 0, -1441550, 1, 0, -11140
 [node name="PropsTilesFront" type="TileMap" parent="."]
 scale = Vector2( 3, 3 )
 z_index = 5
-tile_set = ExtResource( 4 )
+tile_set = ExtResource( 5 )
 cell_size = Vector2( 8, 8 )
 format = 1
 tile_data = PoolIntArray( -5504649, 5, 0, -2555812, 5, 0, -982933, 4, 0, -327525, 6, 0, -130955, 6, 0 )
@@ -52,74 +55,80 @@ tile_data = PoolIntArray( -5504649, 5, 0, -2555812, 5, 0, -982933, 4, 0, -327525
 [node name="WindGusts" type="Node" parent="."]
 editor/display_folded = true
 
-[node name="WindGust" parent="WindGusts" instance=ExtResource( 5 )]
+[node name="WindGust" parent="WindGusts" instance=ExtResource( 6 )]
 position = Vector2( 526.026, 482.871 )
 
-[node name="WindGust2" parent="WindGusts" instance=ExtResource( 5 )]
+[node name="WindGust2" parent="WindGusts" instance=ExtResource( 6 )]
 position = Vector2( 1172.03, 894.222 )
 
-[node name="WindGust3" parent="WindGusts" instance=ExtResource( 5 )]
+[node name="WindGust3" parent="WindGusts" instance=ExtResource( 6 )]
 position = Vector2( 3116.89, 684.06 )
 
-[node name="WindGust4" parent="WindGusts" instance=ExtResource( 5 )]
+[node name="WindGust4" parent="WindGusts" instance=ExtResource( 6 )]
 position = Vector2( 3420.11, 686.428 )
 
-[node name="WindGust5" parent="WindGusts" instance=ExtResource( 5 )]
+[node name="WindGust5" parent="WindGusts" instance=ExtResource( 6 )]
 position = Vector2( 3734.05, 601.046 )
 
-[node name="WindGust6" parent="WindGusts" instance=ExtResource( 5 )]
+[node name="WindGust6" parent="WindGusts" instance=ExtResource( 6 )]
 position = Vector2( 4063.47, 490.003 )
 
-[node name="WindGust7" parent="WindGusts" instance=ExtResource( 5 )]
+[node name="WindGust7" parent="WindGusts" instance=ExtResource( 6 )]
 position = Vector2( 4259.89, -282.729 )
 
-[node name="WindGust8" parent="WindGusts" instance=ExtResource( 5 )]
+[node name="WindGust8" parent="WindGusts" instance=ExtResource( 6 )]
 position = Vector2( 6055.68, 341.626 )
 
-[node name="WindGust9" parent="WindGusts" instance=ExtResource( 5 )]
+[node name="WindGust9" parent="WindGusts" instance=ExtResource( 6 )]
 position = Vector2( 6287.5, 81.9934 )
 
-[node name="WindGust10" parent="WindGusts" instance=ExtResource( 5 )]
+[node name="WindGust10" parent="WindGusts" instance=ExtResource( 6 )]
 position = Vector2( 6896.4, -292.002 )
 
-[node name="WindGust11" parent="WindGusts" instance=ExtResource( 5 )]
+[node name="WindGust11" parent="WindGusts" instance=ExtResource( 6 )]
 position = Vector2( 7066.4, -529.998 )
 
-[node name="WindGust12" parent="WindGusts" instance=ExtResource( 5 )]
+[node name="WindGust12" parent="WindGusts" instance=ExtResource( 6 )]
 position = Vector2( 7633.11, -712.051 )
 
-[node name="WindGust13" parent="WindGusts" instance=ExtResource( 5 )]
+[node name="WindGust13" parent="WindGusts" instance=ExtResource( 6 )]
 position = Vector2( 7909.12, -955.766 )
 
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 7 )
 autoplay = true
 
 [node name="OneWayCollisionVolumes" type="Node" parent="."]
 editor/display_folded = true
 
-[node name="OneWayVolume" parent="OneWayCollisionVolumes" instance=ExtResource( 7 )]
+[node name="OneWayVolume" parent="OneWayCollisionVolumes" instance=ExtResource( 8 )]
 position = Vector2( 2337.23, 741.297 )
 
-[node name="OneWayVolume2" parent="OneWayCollisionVolumes" instance=ExtResource( 7 )]
+[node name="OneWayVolume2" parent="OneWayCollisionVolumes" instance=ExtResource( 8 )]
 position = Vector2( 2337.74, 644.788 )
 
-[node name="OneWayVolume3" parent="OneWayCollisionVolumes" instance=ExtResource( 7 )]
+[node name="OneWayVolume3" parent="OneWayCollisionVolumes" instance=ExtResource( 8 )]
 position = Vector2( 2110.46, 4.84561 )
 
-[node name="OneWayVolume4" parent="OneWayCollisionVolumes" instance=ExtResource( 7 )]
+[node name="OneWayVolume4" parent="OneWayCollisionVolumes" instance=ExtResource( 8 )]
 position = Vector2( 2242, -60 )
 
-[node name="OneWayVolume5" parent="OneWayCollisionVolumes" instance=ExtResource( 7 )]
+[node name="OneWayVolume5" parent="OneWayCollisionVolumes" instance=ExtResource( 8 )]
 position = Vector2( 2109.72, -155.357 )
 
-[node name="OneWayVolume6" parent="OneWayCollisionVolumes" instance=ExtResource( 7 )]
+[node name="OneWayVolume6" parent="OneWayCollisionVolumes" instance=ExtResource( 8 )]
 position = Vector2( 2241.64, -251.79 )
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Slime" parent="Enemies" instance=ExtResource( 8 )]
+[node name="Slime" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 851.727, 17.4781 )
 
-[node name="Slime2" parent="Enemies" instance=ExtResource( 8 )]
+[node name="Slime2" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 1685.04, 81.8168 )
+
+[node name="Eagle" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 3570, 544.517 )
+
+[node name="Eagle2" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 3915.9, 482.871 )
