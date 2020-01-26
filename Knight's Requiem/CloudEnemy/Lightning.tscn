@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://CloudEnemy/Lightning.gd" type="Script" id=1]
+[ext_resource path="res://Graphics/Cloud/Lightning_Yellow.png" type="Texture" id=2]
+[ext_resource path="res://SFX/Thunder.ogg" type="AudioStream" id=3]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 17.3173, 77.8207 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "lightning_bolt"
+length = 3.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 ]
+}
+
+[node name="Lightning" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+position = Vector2( 3.22638, 77.7917 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -3.15796, 0 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0.921569, 0.592157, 1 )
+position = Vector2( 3.30288, 73.4036 )
+z_index = -5
+texture = ExtResource( 2 )
+offset = Vector2( -0.0764999, 4.38813 )
+vframes = 2
+hframes = 6
+frame = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "lightning_bolt"
+playback_speed = 13.0
+anims/lightning_bolt = SubResource( 1 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+autoplay = true
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]

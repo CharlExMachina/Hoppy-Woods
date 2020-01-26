@@ -39,6 +39,7 @@ horizontal_speed = 30
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 0.988235, 0.701961, 1 )
 position = Vector2( 0, -7.82 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 2 )
@@ -50,6 +51,7 @@ playback_speed = 6.64
 anims/Idle = SubResource( 2 )
 
 [node name="DamageArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 
 [node name="DamageBox" type="CollisionShape2D" parent="DamageArea"]
@@ -57,6 +59,7 @@ position = Vector2( 1.52588e-005, 0.440125 )
 shape = SubResource( 3 )
 
 [node name="WeakspotArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 32
 script = ExtResource( 3 )
 
