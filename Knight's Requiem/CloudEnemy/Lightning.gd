@@ -9,3 +9,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func _on_AudioStreamPlayer2D_finished():
 	queue_free()
 	pass
+
+
+func _on_Area2D_body_entered(body):
+	get_tree().call_group("Gamestate", "hurt")
+	pass

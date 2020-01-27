@@ -257,4 +257,4 @@ autoplay = true
 [node name="GUI" parent="." instance=ExtResource( 16 )]
 
 [node name="Cloud" parent="." instance=ExtResource( 17 )]
-position = Vector2( 761.678, 188.959 )
+position = Vector2( 818.814, 277.384 )
