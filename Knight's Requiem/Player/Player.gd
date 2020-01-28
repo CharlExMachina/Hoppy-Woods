@@ -77,6 +77,7 @@ func check_is_on_floor():
 		grounded = true
 		if is_hurt:
 			is_hurt = false
+			$RayCast2D.enabled = true
 	else:
 		grounded = false
 	pass
@@ -90,6 +91,7 @@ func set_player_invincible():
 	#change from player layer to invincible layer
 	self.set_collision_layer_bit(4, true)
 	self.set_collision_layer_bit(0, false)
+	$RayCast2D.enabled = false
 	
 	#collision with hazards
 	self.set_collision_mask_bit(2, false)
