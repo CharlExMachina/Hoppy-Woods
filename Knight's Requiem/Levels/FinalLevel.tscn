@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Levels/GameState.gd" type="Script" id=1]
 [ext_resource path="res://Tilesets/final_level_tiles.tres" type="TileSet" id=2]
@@ -7,6 +7,23 @@
 [ext_resource path="res://EagleEnemy/Eagle.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
+resource_name = "Fly"
+length = 1.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -300 ) ]
+}
+
+[sub_resource type="Animation" id=3]
 resource_name = "Fly"
 length = 1.2
 loop = true
@@ -98,6 +115,17 @@ frame = 3
 playback_speed = 0.7
 anims/Fly = SubResource( 1 )
 
+[node name="Eagle4" parent="Node" instance=ExtResource( 5 )]
+editor/display_folded = true
+position = Vector2( 5350, -190 )
+
+[node name="EagleSprite" parent="Node/Eagle4" index="0"]
+frame = 3
+
+[node name="AnimationPlayer" parent="Node/Eagle4/EagleSprite" index="2"]
+playback_speed = 0.7
+anims/Fly = SubResource( 3 )
+
 [node name="Eagle3" parent="Node" instance=ExtResource( 5 )]
 editor/display_folded = true
 position = Vector2( 5030.16, -490 )
@@ -110,5 +138,7 @@ playback_speed = 0.7
 anims/Fly = SubResource( 2 )
 
 [editable path="Node/Eagle2"]
+
+[editable path="Node/Eagle4"]
 
 [editable path="Node/Eagle3"]
