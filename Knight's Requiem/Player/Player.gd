@@ -160,7 +160,14 @@ func set_camera_limits():
 	var tilemap = get_parent().get_node("CollisionTiles")
 	var map_limits = tilemap.get_used_rect()
 	var map_cellsize = tilemap.cell_size
-	$Camera.limit_left = map_limits.position.x * map_cellsize.x * 2
-	$Camera.limit_right = map_limits.end.x * map_cellsize.x * 2
-	$Camera.limit_top = map_limits.position.y * map_cellsize.y * 2 + 5
-	$Camera.limit_bottom = map_limits.end.y * map_cellsize.y * 2
+	
+	if tilemap.scale.x == 2:
+		$Camera.limit_left = map_limits.position.x * map_cellsize.x * 2
+		$Camera.limit_right = map_limits.end.x * map_cellsize.x * 2
+		$Camera.limit_top = map_limits.position.y * map_cellsize.y * 2 + 5
+		$Camera.limit_bottom = map_limits.end.y * map_cellsize.y * 2
+	else:
+		$Camera.limit_left = map_limits.position.x * map_cellsize.x
+		$Camera.limit_right = map_limits.end.x * map_cellsize.x
+		$Camera.limit_top = map_limits.position.y * map_cellsize.y + 5
+		$Camera.limit_bottom = map_limits.end.y * map_cellsize.y

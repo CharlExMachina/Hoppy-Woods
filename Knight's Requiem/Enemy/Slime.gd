@@ -54,7 +54,8 @@ func hurt_player():
 	pass
 
 func _on_Area2D_body_entered(body):
-	hurt_player()
+	if body.get_collision_layer() == 1:
+		hurt_player()
 	pass
 
 func flip_hspeed():
