@@ -47,7 +47,6 @@ format = 1
 tile_data = PoolIntArray( 524345, 69, 0, 524366, 68, 0, 851974, 79, 0, 851979, 79, 0, 1048590, 67, 0, 1048591, 67, 0, 1048592, 67, 0, 1048603, 67, 0, 1048604, 67, 0, 1048605, 67, 0, 1048610, 67, 0, 1048611, 67, 0, 1048612, 67, 0, 1048634, 39, 0, 1048635, 40, 0, 1048636, 40, 0, 1048637, 40, 0, 1048638, 40, 0, 1048639, 40, 0, 1048640, 41, 0, 1114172, 54, 0, 1114173, 61, 0, 1179708, 54, 0, 1179709, 59, 0, 1179710, 60, 0, 1245241, 66, 0, 1245242, 66, 0, 1245243, 53, 0, 1245244, 72, 0, 1245245, 72, 0, 1245246, 59, 0, 1245247, 60, 0, 1310771, 68, 0, 1376325, 66, 0, 1376326, 66, 0, 1376327, 66, 0, 1376337, 67, 0, 2162743, 51, 0, 2359360, 83, 0, 2359361, 74, 0, 2359362, 74, 0, 2359363, 77, 0, 2359364, 74, 0, 2359365, 74, 0, 2359366, 74, 0, 2359367, 74, 0, 2424896, 74, 0, 2424897, 73, 0, 2424898, 74, 0, 2424900, 74, 0, 2424901, 74, 0, 2424902, 74, 0, 2424903, 74, 0, 2490432, 74, 0, 2490433, 72, 0, 2490434, 74, 0, 2490436, 74, 0, 2490437, 74, 0, 2490438, 74, 0, 2490439, 81, 0 )
 
 [node name="Cherries" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Cherry" parent="Cherries" instance=ExtResource( 5 )]
 position = Vector2( 1140, 499.831 )
@@ -103,7 +102,6 @@ position = Vector2( 5795.65, 280 )
 z_index = 0
 
 [node name="Hazards" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="SpikeTop2" parent="Hazards" instance=ExtResource( 6 )]
 position = Vector2( 5795.65, 404.103 )
@@ -126,7 +124,6 @@ position = Vector2( 6188.24, 404.203 )
 z_index = 6
 
 [node name="OneWayPlatforms" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="OneWayVolume" parent="OneWayPlatforms" instance=ExtResource( 8 )]
 position = Vector2( 1536.59, 711.198 )
@@ -148,7 +145,6 @@ position = Vector2( 1468, 967.39 )
 position = Vector2( 1536.59, 1063.56 )
 
 [node name="Props" type="Node2D" parent="."]
-editor/display_folded = true
 z_index = -10
 __meta__ = {
 "_edit_lock_": true

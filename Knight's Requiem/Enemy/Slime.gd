@@ -11,15 +11,15 @@ onready var right_ground_checker: RayCast2D = $Raycasts/Right
 #preload the explosion effect
 var explosion_fx = preload("res://EnemyExplosion/EnemyExplosion.tscn")
 
-var UP = Vector2(0, -10)
 var velocity = Vector2(0, 0)
 var check_floor = true
 
 func _physics_process(delta):
 	horizontal_movement()
 	apply_gravity()
+	velocity = move_and_slide(velocity, Vector2.UP)
 	check_for_boundaries()
-	velocity = move_and_slide(velocity, UP)
+	check_wall_collision()
 	pass
 
 func check_for_boundaries():
@@ -38,15 +38,17 @@ func apply_gravity():
 
 func horizontal_movement():
 	velocity.x = horizontal_speed
+	$Sprite.set_flip_h(horizontal_speed > 0)
+	pass
+
+func check_wall_collision():
 	if is_on_wall():
 		if (horizontal_speed > 0): #so it doesn't go haywire when it collides
 			position.x -= 1
 		else:
 			position.x += 1
-		
+
 		flip_hspeed()
-	
-	$Sprite.set_flip_h(horizontal_speed > 0)
 	pass
 
 func hurt_player():
@@ -54,7 +56,8 @@ func hurt_player():
 	pass
 
 func _on_Area2D_body_entered(body):
-	if body.get_collision_layer() == 1:
+#	if body.get_collision_layer() == 1:
+	if body.get_collision_layer_bit(0):
 		hurt_player()
 	pass
 

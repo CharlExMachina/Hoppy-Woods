@@ -51,15 +51,13 @@ playback_speed = 6.64
 anims/Idle = SubResource( 2 )
 
 [node name="DamageArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 4
 
 [node name="DamageBox" type="CollisionShape2D" parent="DamageArea"]
-position = Vector2( 1.52588e-005, 0.440125 )
+position = Vector2( 1.52588e-05, 0.440125 )
 shape = SubResource( 3 )
 
 [node name="WeakspotArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 32
 script = ExtResource( 3 )
 
@@ -72,14 +70,14 @@ shape = SubResource( 4 )
 [node name="Left" type="RayCast2D" parent="Raycasts"]
 position = Vector2( -24.8252, 10.926 )
 enabled = true
-cast_to = Vector2( 0, 4.95 )
+cast_to = Vector2( 0, 6.954 )
 collision_mask = 2
 collide_with_areas = true
 
 [node name="Right" type="RayCast2D" parent="Raycasts"]
 position = Vector2( 24.68, 10.926 )
 enabled = true
-cast_to = Vector2( 0, 4.95 )
+cast_to = Vector2( 0, 5.405 )
 collision_mask = 2
 collide_with_areas = true
 [connection signal="body_entered" from="DamageArea" to="." method="_on_Area2D_body_entered"]

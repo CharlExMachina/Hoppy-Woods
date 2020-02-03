@@ -12,5 +12,6 @@ func _on_WeakspotArea_was_stomped():
 
 
 func _on_DamageArea_body_entered(body):
-	get_tree().call_group("Gamestate", "hurt")
+	if body.get_collision_layer_bit(0):
+		get_tree().call_group("Gamestate", "hurt")
 	pass

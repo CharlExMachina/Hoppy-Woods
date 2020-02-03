@@ -54,7 +54,6 @@ format = 1
 tile_data = PoolIntArray( -5504649, 5, 0, -2555812, 5, 0, -982933, 4, 0, -327525, 6, 0, -130955, 6, 0 )
 
 [node name="WindGusts" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="WindGust" parent="WindGusts" instance=ExtResource( 6 )]
 position = Vector2( 526.026, 482.871 )
@@ -103,7 +102,6 @@ stream = ExtResource( 7 )
 autoplay = true
 
 [node name="OneWayCollisionVolumes" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="OneWayVolume" parent="OneWayCollisionVolumes" instance=ExtResource( 8 )]
 position = Vector2( 2337.23, 741.297 )
@@ -124,7 +122,6 @@ position = Vector2( 2109.72, -155.357 )
 position = Vector2( 2241.64, -251.79 )
 
 [node name="Enemies" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Slime" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 851.727, 17.4781 )
