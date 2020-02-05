@@ -1,8 +1,6 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Graphics/Environment/layers/background.png" type="Texture" id=2]
-[ext_resource path="res://Graphics/Environment/layers/middleground.png" type="Texture" id=3]
 [ext_resource path="res://Graphics/Player/idle/player-idle-1.png" type="Texture" id=4]
 [ext_resource path="res://Graphics/Player/idle/player-idle-2.png" type="Texture" id=5]
 [ext_resource path="res://Graphics/Player/idle/player-idle-3.png" type="Texture" id=6]
@@ -36,16 +34,6 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "hurt",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "jump",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "run",
@@ -54,6 +42,16 @@ animations = [ {
 "frames": [ ExtResource( 17 ) ],
 "loop": true,
 "name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "hurt",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "jump",
 "speed": 5.0
 } ]
 
@@ -91,42 +89,15 @@ __meta__ = {
 }
 
 [node name="Camera" type="Camera2D" parent="."]
-editor/display_folded = true
 current = true
 limit_left = 1
 limit_top = -3
 limit_right = 8046
 limit_bottom = 1357
-drag_margin_h_enabled = false
 smoothing_enabled = true
 smoothing_speed = 6.0
 editor_draw_limits = true
 script = SubResource( 2 )
-
-[node name="ParallaxBackgrounds" type="ParallaxBackground" parent="Camera"]
-scroll_ignore_camera_zoom = true
-
-[node name="Background" type="ParallaxLayer" parent="Camera/ParallaxBackgrounds"]
-motion_scale = Vector2( 0.2, 1 )
-motion_offset = Vector2( 0, -130 )
-motion_mirroring = Vector2( 1536, 0 )
-
-[node name="SkyTexture" type="TextureRect" parent="Camera/ParallaxBackgrounds/Background"]
-margin_right = 2000.0
-margin_bottom = 960.0
-texture = ExtResource( 2 )
-stretch_mode = 2
-
-[node name="MiddleBackground" type="ParallaxLayer" parent="Camera/ParallaxBackgrounds"]
-motion_scale = Vector2( 0.4, 1 )
-motion_offset = Vector2( 0, 630 )
-motion_mirroring = Vector2( 352, 0 )
-
-[node name="WoodsTexture" type="TextureRect" parent="Camera/ParallaxBackgrounds/MiddleBackground"]
-margin_right = 2000.0
-margin_bottom = 736.0
-texture = ExtResource( 3 )
-stretch_mode = 2
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 3 )
