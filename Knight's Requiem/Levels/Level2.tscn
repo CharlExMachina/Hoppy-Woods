@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Levels/GameState.gd" type="Script" id=1]
 [ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=2]
@@ -11,8 +11,7 @@
 [ext_resource path="res://Enemy/Slime.tscn" type="PackedScene" id=9]
 [ext_resource path="res://EagleEnemy/Eagle.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Cherry/Cherry.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Graphics/Environment/forest/environment/layers/background.png" type="Texture" id=12]
-[ext_resource path="res://Graphics/Environment/forest/environment/layers/middleground.png" type="Texture" id=13]
+[ext_resource path="res://Levels/ParallaxBackgrounds/Level2ParallaxBackground.tscn" type="PackedScene" id=12]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource( 1 )
@@ -223,30 +222,4 @@ position = Vector2( 5440, -320 )
 [node name="Cherry22" parent="Cherries" instance=ExtResource( 11 )]
 position = Vector2( 5440, -250 )
 
-[node name="Level2ParallaxBackground" type="ParallaxBackground" parent="."]
-scroll_limit_begin = Vector2( 0, -50 )
-scroll_limit_end = Vector2( 0, 50 )
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Level2ParallaxBackground"]
-motion_scale = Vector2( 0.3, 0.3 )
-motion_offset = Vector2( -600, -600 )
-motion_mirroring = Vector2( 960, 0 )
-
-[node name="Sprite" type="Sprite" parent="Level2ParallaxBackground/ParallaxLayer"]
-scale = Vector2( 5, 5 )
-texture = ExtResource( 12 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 960, 240 )
-
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Level2ParallaxBackground"]
-motion_scale = Vector2( 0.6, 0.6 )
-motion_offset = Vector2( -600, -600 )
-motion_mirroring = Vector2( 1920, 50 )
-
-[node name="Sprite" type="Sprite" parent="Level2ParallaxBackground/ParallaxLayer2"]
-scale = Vector2( 5, 5 )
-texture = ExtResource( 13 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 1920, 240 )
+[node name="Level2ParallaxBackground" parent="." instance=ExtResource( 12 )]
