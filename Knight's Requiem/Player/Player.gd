@@ -139,7 +139,7 @@ func boost():
 	pass
 
 func check_if_stomped_enemy():
-	if stomp_raycast.is_colliding():
+	if stomp_raycast.is_colliding() and not grounded and velocity.y > 0:
 		bounce_from_enemy()
 		emit_signal("stomp_enemy")
 
