@@ -46,14 +46,14 @@ position = Vector2( 0, -64.5901 )
 scale = Vector2( 2.3307, 2.3307 )
 frames = SubResource( 1 )
 animation = "fly"
-frame = 2
+frame = 1
 playing = true
 
 [node name="DamageArea" type="Area2D" parent="EagleSprite"]
 collision_layer = 4
 
 [node name="DamageCollision" type="CollisionShape2D" parent="EagleSprite/DamageArea"]
-position = Vector2( -2.83257, 6.60932 )
+position = Vector2( -2.51101, 8.15279 )
 scale = Vector2( 1.10209, 0.598119 )
 shape = SubResource( 2 )
 
@@ -63,7 +63,7 @@ collision_layer = 32
 script = ExtResource( 6 )
 
 [node name="WeakspotCollision" type="CollisionShape2D" parent="EagleSprite/WeakspotArea"]
-position = Vector2( -2.97308, -2.28143 )
+position = Vector2( -2.20134, -2.15281 )
 shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="EagleSprite"]
