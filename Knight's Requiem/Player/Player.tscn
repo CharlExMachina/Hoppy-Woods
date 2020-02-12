@@ -34,6 +34,11 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "run",
@@ -47,11 +52,6 @@ animations = [ {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "hurt",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 10 ) ],
-"loop": true,
-"name": "jump",
 "speed": 5.0
 } ]
 
@@ -114,7 +114,7 @@ anims/invincible_blink = SubResource( 4 )
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( 0, 13.91 )
 enabled = true
-cast_to = Vector2( 0, 5.406 )
+cast_to = Vector2( 0, 7.621 )
 collision_mask = 32
 collide_with_areas = true
 collide_with_bodies = false

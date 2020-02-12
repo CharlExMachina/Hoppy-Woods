@@ -162,12 +162,12 @@ func set_camera_limits():
 	var map_cellsize = tilemap.cell_size
 	
 	if tilemap.scale.x == 2:
-		$Camera.limit_left = map_limits.position.x * map_cellsize.x * 2
-		$Camera.limit_right = map_limits.end.x * map_cellsize.x * 2
+		$Camera.limit_left = map_limits.position.x * map_cellsize.x * 2 + 40
+		$Camera.limit_right = map_limits.end.x * map_cellsize.x * 2 - 200
 		$Camera.limit_top = map_limits.position.y * map_cellsize.y * 2 + 5
 		$Camera.limit_bottom = map_limits.end.y * map_cellsize.y * 2
 	else:
-		$Camera.limit_left = map_limits.position.x * map_cellsize.x
+		$Camera.limit_left = map_limits.position.x * map_cellsize.x + 100
 		$Camera.limit_right = map_limits.end.x * map_cellsize.x
 		$Camera.limit_top = map_limits.position.y * map_cellsize.y + 5
 		$Camera.limit_bottom = map_limits.end.y * map_cellsize.y
