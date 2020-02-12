@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Levels/GameState.gd" type="Script" id=1]
 [ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=2]
@@ -12,14 +12,17 @@
 [ext_resource path="res://EagleEnemy/Eagle.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Cherry/Cherry.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Levels/ParallaxBackgrounds/Level2ParallaxBackground.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Portal/Portal.tscn" type="PackedScene" id=13]
+[ext_resource path="res://CollisionVolume/CollisionVolume.tscn" type="PackedScene" id=14]
 
 [node name="Level2" type="Node2D"]
 script = ExtResource( 1 )
+next_level = "res://Levels/FinalLevel.tscn"
 
 [node name="GUI" parent="." instance=ExtResource( 2 )]
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
-position = Vector2( 280.688, 439.484 )
+position = Vector2( 282.713, 438.778 )
 
 [node name="BackgroundTiles" type="TileMap" parent="."]
 scale = Vector2( 2, 2 )
@@ -102,6 +105,8 @@ position = Vector2( 7909.12, -955.766 )
 stream = ExtResource( 7 )
 autoplay = true
 
+[node name="Hazards" type="Node" parent="."]
+
 [node name="OneWayCollisionVolumes" type="Node" parent="."]
 
 [node name="OneWayVolume" parent="OneWayCollisionVolumes" instance=ExtResource( 8 )]
@@ -132,9 +137,6 @@ position = Vector2( 1685.04, 81.8168 )
 
 [node name="Slime3" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 6603, -335.32 )
-
-[node name="Slime5" parent="Enemies" instance=ExtResource( 9 )]
-position = Vector2( 4638.78, -462.615 )
 
 [node name="Slime6" parent="Enemies" instance=ExtResource( 9 )]
 position = Vector2( 5062.32, -688.234 )
@@ -223,3 +225,18 @@ position = Vector2( 5440, -320 )
 position = Vector2( 5440, -250 )
 
 [node name="Level2ParallaxBackground" parent="." instance=ExtResource( 12 )]
+
+[node name="Portal" parent="." instance=ExtResource( 13 )]
+position = Vector2( 9172.21, -1505.42 )
+
+[node name="CollisionVolume" parent="." instance=ExtResource( 14 )]
+position = Vector2( 2912.72, -265.675 )
+scale = Vector2( 2.80008, 1.64 )
+
+[node name="CollisionVolume2" parent="." instance=ExtResource( 14 )]
+position = Vector2( 3472.74, -433.005 )
+scale = Vector2( 4.24008, 1.64 )
+
+[node name="CollisionVolume3" parent="." instance=ExtResource( 14 )]
+position = Vector2( 3984.21, -305.331 )
+scale = Vector2( 4.24008, 1.64 )
