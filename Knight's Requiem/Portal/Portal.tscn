@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Graphics/goal_portal/Portal.png" type="Texture" id=1]
+[ext_resource path="res://Graphics/goal_portal/portal_particle.png" type="Texture" id=2]
+[ext_resource path="res://Portal/Portal.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 100, 240 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 1 )
+region = Rect2( 100, 0, 100, 240 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 200, 0, 100, 240 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 300, 0, 100, 240 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=6]
+
+[sub_resource type="ParticlesMaterial" id=7]
+lifetime_randomness = 0.12
+emission_shape = 1
+emission_sphere_radius = 57.97
+flag_disable_z = true
+spread = 21.13
+flatness = 0.5
+gravity = Vector3( -100, -300, 0 )
+initial_velocity = 69.37
+orbit_velocity = 0.6
+orbit_velocity_random = 0.14
+linear_accel = 5.78
+radial_accel = 5.78
+radial_accel_random = 0.07
+scale = 0.9
+scale_random = 0.34
+hue_variation = 0.07
+hue_variation_random = 0.3
+
+[node name="Portal" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 5 )
+animation = "idle"
+playing = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 6 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 15
+lifetime = 3.0
+process_material = SubResource( 7 )
+texture = ExtResource( 2 )
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
