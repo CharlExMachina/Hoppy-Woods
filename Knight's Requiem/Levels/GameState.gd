@@ -1,8 +1,10 @@
 extends Node2D
 
+export var next_level : String = ""
+
 var lives = 3
 var cherries = 0
-var extra_live_threshold = 30
+var extra_live_threshold = 10
 
 func _ready():
 	add_to_group("Gamestate")
@@ -10,7 +12,6 @@ func _ready():
 	pass
 
 func hurt():
-	
 	lives -= 1
 	$Player.hurt()
 	if (lives < 1):
@@ -22,6 +23,7 @@ func cherry_up():
 	cherries += 1
 	if cherries >= extra_live_threshold:
 		lives += 1
+		get_tree().call_group("GUI", "play_extra_life_sound")
 		cherries = 0
 	update_gui()
 	pass
@@ -33,4 +35,9 @@ func update_gui():
 
 func end_game():
 	get_tree().change_scene("res://Levels/GameOver.tscn")
+	pass
+
+func win_game():
+	if not next_level == "":
+		get_tree().change_scene(next_level)
 	pass

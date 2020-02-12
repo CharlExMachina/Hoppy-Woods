@@ -7,3 +7,7 @@ func update_lives(lives):
 func update_cherries(amount):
 	$Control/CherriesLabel.text = str(amount)
 	pass
+
+func play_extra_life_sound():
+	$AudioStreamPlayer.play()
+	pass
