@@ -21,10 +21,9 @@ func hurt():
 
 func cherry_up():
 	cherries += 1
-	if cherries >= extra_live_threshold:
+	if cherries % extra_live_threshold == 0:
 		lives += 1
 		get_tree().call_group("GUI", "play_extra_life_sound")
-		cherries = 0
 	update_gui()
 	pass
 
