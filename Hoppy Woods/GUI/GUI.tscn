@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=1]
 [ext_resource path="res://Graphics/UI/Normal.png" type="Texture" id=2]
@@ -19,6 +19,10 @@ outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 4 )
 
+[sub_resource type="DynamicFont" id=3]
+size = 46
+font_data = ExtResource( 4 )
+
 [node name="GUI" type="CanvasLayer" groups=[
 "GUI",
 ]]
@@ -27,6 +31,9 @@ script = ExtResource( 1 )
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
 anchor_left = 1.0
@@ -36,6 +43,9 @@ margin_top = 20.0
 margin_bottom = 70.0
 texture = ExtResource( 2 )
 expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/TextureRect"]
 anchor_right = 1.0
@@ -74,6 +84,19 @@ margin_right = 40.0
 margin_bottom = 32.0
 custom_fonts/font = SubResource( 2 )
 text = "50"
+
+[node name="PlayerOneUps" type="Label" parent="Control"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = -67.0
+margin_right = 211.0
+margin_bottom = -20.0
+custom_fonts/font = SubResource( 3 )
+text = "Lives: 3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )

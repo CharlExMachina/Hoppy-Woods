@@ -11,3 +11,6 @@ func update_cherries(amount):
 func play_extra_life_sound():
 	$AudioStreamPlayer.play()
 	pass
+
+func update_one_ups(amount):
+	$Control/PlayerOneUps.text = "Lives: " + str(amount)

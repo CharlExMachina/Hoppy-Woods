@@ -24,7 +24,9 @@ position = Vector2( -191.12, 0 )
 script = ExtResource( 1 )
 next_level = "res://Levels/Level2.tscn"
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
+[node name="Player" parent="." groups=[
+"Player",
+] instance=ExtResource( 2 )]
 position = Vector2( 429.805, 471.502 )
 z_index = 10
 collision/safe_margin = 1.0

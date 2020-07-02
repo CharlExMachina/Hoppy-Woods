@@ -67,9 +67,7 @@ func jump():
 func apply_gravity():
 	velocity.y += GRAVITY
 	
-	if position.y > WORLD_LIMIT:
-		# do game over
-		get_tree().call_group("Gamestate", "end_game")
+	check_is_out_of_bounds()
 	pass
 
 func check_is_on_floor():
@@ -150,6 +148,11 @@ func bounce_from_enemy():
 	velocity.y -= enemy_bounce_force
 	play_stomp_sound()
 	pass
+
+func check_is_out_of_bounds():
+	if position.y > WORLD_LIMIT:
+		# do game over
+		get_tree().call_group("Gamestate", "lose_one_up")
 
 func play_stomp_sound():
 	audio_player.stream = stomp_sound
