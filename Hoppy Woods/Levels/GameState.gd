@@ -46,6 +46,7 @@ func update_gui():
 	pass
 
 func end_game():
+	Global.one_ups = 3
 	get_tree().change_scene("res://Levels/GameOver.tscn")
 	pass
 
