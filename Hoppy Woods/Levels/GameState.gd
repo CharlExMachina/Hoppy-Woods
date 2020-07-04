@@ -2,7 +2,6 @@ extends Node2D
 
 export var next_level : String = ""
 
-var one_ups = 3
 var lives = 3
 var cherries = 0
 var extra_live_threshold = 10
@@ -23,13 +22,13 @@ func hurt():
 	pass
 
 func lose_one_up():
-	one_ups -= 1
+	Global.one_ups -= 1
 	
-	if one_ups <= 0:
+	if Global.one_ups <= 0:
 		end_game()
 	else:
 		$Player.position = player_start_pos
-		get_tree().call_group("GUI", "update_one_ups", one_ups)
+		get_tree().call_group("GUI", "update_one_ups", Global.one_ups)
 		get_tree().call_group("Player", "play_invincible_animation")
 
 func cherry_up():
@@ -43,6 +42,7 @@ func cherry_up():
 func update_gui():
 	get_tree().call_group("GUI", "update_lives", lives)
 	get_tree().call_group("GUI", "update_cherries", cherries)
+	get_tree().call_group("GUI", "update_one_ups", Global.one_ups)
 	pass
 
 func end_game():

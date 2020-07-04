@@ -111,7 +111,13 @@ func set_player_not_invincible(seconds):
 
 func play_invincible_animation():
 	$AnimationPlayer.play("invincible_blink")
+	yield(get_tree().create_timer(1), "timeout")
+	stop_invincible_animation()
 	pass
+
+func respawn():
+	play_invincible_animation()
+	
 
 func stop_invincible_animation():
 	$AnimationPlayer.stop()
